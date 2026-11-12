@@ -30,7 +30,7 @@ nav a:hover{color:var(--signal)}
 .btn{display:inline-block;padding:13px 22px;border-radius:6px;font-weight:600;text-decoration:none;border:2px solid var(--signal)}
 .btn.main{background:var(--signal);color:var(--on-signal)}
 .btn.alt{color:var(--signal)}
-.photo{background:#fff;border-radius:14px;display:flex;justify-content:center;align-items:center;overflow:hidden;aspect-ratio:1/1;max-width:440px;width:100%;margin-left:auto;padding:30px}
+.photo{background:transparent;border-radius:14px;display:flex;justify-content:center;align-items:center;overflow:hidden;aspect-ratio:1/1;max-width:440px;width:100%;margin-left:auto;padding:20px}
 .photo img{display:block;width:100%;height:auto;object-fit:contain}
 .flowrow{max-width:640px;margin:0 auto 56px}
 .flow{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px}
@@ -105,7 +105,7 @@ header.site{position:sticky;top:0;z-index:40;background:rgba(16,27,53,.96);-webk
 header.site .navbar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;min-height:64px}
 header.site .navbar::after{content:""}
 header.site .brand{color:#fff;justify-self:start;display:flex;align-items:center;}
-header.site .brand img{height:36px;width:auto;display:block;}
+header.site .brand img{height:40px;width:auto;display:block;}
 header.site nav{display:flex;justify-content:center;gap:6px 28px;flex-wrap:nowrap}
 header.site nav a{margin:0;padding:10px 2px;color:#E2E8F0;font-weight:500;font-size:15px;text-decoration:none;border-bottom:2px solid transparent}
 header.site nav a:hover{color:#8DB6FF;border-bottom-color:#8DB6FF}
@@ -250,7 +250,7 @@ footer .legal{padding-bottom:88px}
 <header class="site">
 <div class="wrap navbar">
 <!-- হেডার লোগো -->
-<div class="brand"><img src="https://i.ibb.co/6PZ9Z9K/trackpilot-logo.png" alt="TrackPilot Logo"></div>
+<div class="brand"><img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/trackpilotbyanis_logo.png" alt="TrackPilot Logo"></div>
 <nav aria-label="Main"><a href="#home">Home</a><a href="#services">Services</a><a href="#work">Projects</a><a href="#process">Process</a><a href="#contact">Contact</a></nav>
 </div>
 </header>
@@ -283,7 +283,7 @@ footer .legal{padding-bottom:88px}
     </div>
   </div>
   <!-- হিরো সেকশন লোগো -->
-  <div class="photo"><img src="https://i.ibb.co/6PZ9Z9K/trackpilot-logo.png" alt="TrackPilot by Anis Logo"></div>
+  <div class="photo"><img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/trackpilotbyanis_logo.png" alt="TrackPilot by Anis Logo"></div>
 </div>
 
 <div class="stats"><div><strong>3+</strong><span>Years experience</span></div><div><strong>50+</strong><span>Projects completed</span></div><div><strong>20+</strong><span>Clients</span></div><div><strong>$50,000</strong><span>Total ad spend</span></div></div>
@@ -498,4 +498,12 @@ f.addEventListener('submit',function(e){
   st.className='';st.textContent='';
   f.hidden=true;var th=document.getElementById('fthanks');th.hidden=false;th.focus();
 });
-document
+document.getElementById('tagain').addEventListener('click',function(){
+  f.reset();cv.value='';cLab.textContent='Search your country';cb.classList.remove('has');
+  fields.forEach(function(el){el.closest('.field').classList.remove('bad');el.removeAttribute('aria-invalid');});
+  document.getElementById('fthanks').hidden=true;f.hidden=false;document.getElementById('fname').focus();
+});
+})();
+</script>
+</body>
+</html>
