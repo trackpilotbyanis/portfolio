@@ -338,6 +338,7 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
 .hr-avatars img:first-child{margin-left:0}
 .hr-meta{display:flex;flex-direction:column;gap:2px}
 .hr-text{margin:0;font-size:15px;color:#CBD5E1; font-weight: 500;}
+.hr-text strong { color: #FFC400; } /* হলুদ কালার */
 @media (max-width:800px){.hero-reviews{justify-content:center}.hr-meta{align-items:center}}
 
 /* --- Available for New Clients Badge এবং হলুদ ডটের ফ্লে (Pulse) অ্যানিমেশন --- */
@@ -370,6 +371,11 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
   70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(234, 179, 8, 0); }
   100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(234, 179, 8, 0); }
 }
+/* হলুদ কালার ক্লাস */
+.text-yellow {
+    color: #FFC400;
+    font-weight: 700;
+}
 </style>
 </head>
 <body>
@@ -392,7 +398,7 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
     <h2>A Meta Ads and Conversion Tracking & Data Analytics Specialist.</h2>
     <p class="lead">
       I help businesses grow through data-driven Meta Ads campaigns and reliable tracking solutions, including Meta CAPI, GA4 E-commerce Tracking, and Server-Side GTM.<br><br>
-      My focus is simple: accurate data, smarter decisions, and better ad performance.
+      <span class="text-yellow">My focus is simple:</span> accurate data, smarter decisions, and better ad performance.
     </p>
     <div class="btns"><a class="btn main" href="#contact">Hire me</a><a class="btn alt" href="#services">See what I do</a></div>
     
@@ -405,7 +411,7 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
         <img src="https://i.pravatar.cc/80?img=68" alt="Reviewer 5" width="44" height="44">
       </div>
       <div class="hr-meta">
-        <p class="hr-text"><strong>Trusted by 20+ businesses worldwide</strong></p>
+        <p class="hr-text">Trusted by <strong>20+ businesses</strong> worldwide</p>
       </div>
     </div>
   </div>
@@ -729,46 +735,28 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
 <script>
 // ইমেজ স্লাইডার ফাংশন (পরবর্তী ছবি)
 function nextImage(e, btn) {
-    e.stopPropagation(); // ক্লিক ইভেন্ট বাবলিং বন্ধ করে
+    e.stopPropagation();
     var img = btn.parentElement.querySelector('.slider-img');
     var images = JSON.parse(img.getAttribute('data-images'));
     var currentSrc = img.src;
-    
-    var currentIndex = images.findIndex(function(url) {
-        return currentSrc.includes(url) || url.includes(currentSrc);
-    });
-    
+    var currentIndex = images.findIndex(function(url) { return currentSrc.includes(url) || url.includes(currentSrc); });
     if (currentIndex === -1) currentIndex = 0;
-    
     var nextIndex = (currentIndex + 1) % images.length;
     img.style.opacity = '0';
-    
-    setTimeout(function() {
-        img.src = images[nextIndex];
-        img.style.opacity = '1';
-    }, 200);
+    setTimeout(function() { img.src = images[nextIndex]; img.style.opacity = '1'; }, 200);
 }
 
 // ইমেজ স্লাইডার ফাংশন (আগের ছবি)
 function prevImage(e, btn) {
-    e.stopPropagation(); // ক্লিক ইভেন্ট বাবলিং বন্ধ করে
+    e.stopPropagation();
     var img = btn.parentElement.querySelector('.slider-img');
     var images = JSON.parse(img.getAttribute('data-images'));
     var currentSrc = img.src;
-    
-    var currentIndex = images.findIndex(function(url) {
-        return currentSrc.includes(url) || url.includes(currentSrc);
-    });
-    
+    var currentIndex = images.findIndex(function(url) { return currentSrc.includes(url) || url.includes(currentSrc); });
     if (currentIndex === -1) currentIndex = 0;
-    
     var prevIndex = (currentIndex - 1 + images.length) % images.length;
     img.style.opacity = '0';
-    
-    setTimeout(function() {
-        img.src = images[prevIndex];
-        img.style.opacity = '1';
-    }, 200);
+    setTimeout(function() { img.src = images[prevIndex]; img.style.opacity = '1'; }, 200);
 }
 
 // লাইটবক্স ওপেন করা
@@ -776,27 +764,21 @@ function openLightbox(img) {
     var lightbox = document.getElementById('lightbox');
     var lightboxImg = document.getElementById('lightbox-img');
     lightboxImg.src = img.src;
-    lightbox.style.display = 'flex'; // ডিসপ্লে ফ্লেক্স করা হলো
-    setTimeout(function() {
-        lightbox.classList.add('active'); // অ্যানিমেশনের জন্য
-    }, 10);
+    lightbox.style.display = 'flex';
+    setTimeout(function() { lightbox.classList.add('active'); }, 10);
 }
 
 // লাইটবক্স ক্লোজ করা
 function closeLightbox(e) {
-    if (e) e.stopPropagation(); // ইভেন্ট বাবলিং বন্ধ
+    if (e) e.stopPropagation();
     var lightbox = document.getElementById('lightbox');
     lightbox.classList.remove('active');
-    setTimeout(function() {
-        lightbox.style.display = 'none';
-    }, 300); // ট্রানজিশন শেষ হওয়ার পর ডিসপ্লে নান
+    setTimeout(function() { lightbox.style.display = 'none'; }, 300);
 }
 
 // লাইটবক্সের ভেতরে ছবির বাইরে ক্লিক করলে বন্ধ হবে
 document.getElementById('lightbox').addEventListener('click', function(e) {
-    if (e.target === this) {
-        closeLightbox(e);
-    }
+    if (e.target === this) { closeLightbox(e); }
 });
 
 (function(){
