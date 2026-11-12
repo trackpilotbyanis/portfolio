@@ -18,20 +18,32 @@ body{margin:0;background:var(--bg);color:var(--body);font:400 17px/1.65 "Public 
 h1,h2,h3{font-family:"Familjen Grotesk","Helvetica Neue",Arial,sans-serif;line-height:1.1;margin:0}
 a{color:var(--signal)}
 a:focus-visible,button:focus-visible{outline:3px solid var(--hot);outline-offset:3px}
-.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+
+/* কন্টেইনার সাইজ ১৪০০ পিক্সেল */
+.wrap{max-width:1400px;margin:0 auto;padding:0 40px}
+
 header.top{display:flex;justify-content:space-between;align-items:center;padding:22px 0;gap:16px;flex-wrap:wrap}
 .brand{font:700 18px "Familjen Grotesk",sans-serif}
 nav a{margin-left:20px;color:var(--ink);text-decoration:none;font-weight:500;font-size:15px}
 nav a:hover{color:var(--signal)}
-.hero{padding:40px 0 56px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
-.hero h1{font-size:clamp(34px,5.4vw,60px);font-weight:700;letter-spacing:-.02em}
-.hero p.lead{font-size:19px;color:var(--muted);max-width:52ch;margin:22px 0 28px}
+
+.hero{padding:40px 0 56px;display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center}
+
+.hero h1{font-size:clamp(34px,4.5vw,48px);font-weight:700;letter-spacing:-.02em;line-height:1.2; margin-bottom: 8px;}
+.hero h2{font-size:clamp(22px,2.5vw,30px);font-weight:700;letter-spacing:-.01em;line-height:1.3;margin-bottom:18px;}
+
+.hero p.lead{font-size:18px;color:var(--muted);max-width:55ch;margin:0 0 28px;line-height:1.6;}
 .btns{display:flex;gap:12px;flex-wrap:wrap}
-.btn{display:inline-block;padding:13px 22px;border-radius:6px;font-weight:600;text-decoration:none;border:2px solid var(--signal)}
+.btn{display:inline-block;padding:13px 22px;border-radius:6px;font-weight:600;text-decoration:none;border:2px solid var(--signal); transition: all 0.2s;}
 .btn.main{background:var(--signal);color:var(--on-signal)}
 .btn.alt{color:var(--signal)}
-.photo{background:transparent;border-radius:14px;display:flex;justify-content:center;align-items:center;overflow:hidden;aspect-ratio:1/1;max-width:440px;width:100%;margin-left:auto;padding:20px}
-.photo img{display:block;width:100%;height:auto;object-fit:contain}
+
+.herobg .btn.main { background: #FFE48A; border-color: #FFE48A; color: #101B35; }
+.herobg .btn.main:hover { background: #FFD54F; border-color: #FFD54F; color: #101B35; }
+
+.photo{background:transparent;border-radius:50%;display:flex;justify-content:center;align-items:center;overflow:hidden;aspect-ratio:1/1;max-width:380px;width:100%;margin-left:auto;border:3px solid #FFE48A; box-shadow: 0 0 20px rgba(255, 228, 138, 0.2);}
+.photo img{display:block;width:100%;height:100%;object-fit:cover}
+
 .flowrow{max-width:640px;margin:0 auto 56px}
 .flow{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px}
 .flow svg{width:100%;height:auto;display:block}
@@ -39,13 +51,7 @@ nav a:hover{color:var(--signal)}
 .pulse{animation:move 3.2s linear infinite}
 @keyframes move{from{stroke-dashoffset:24}to{stroke-dashoffset:0}}
 @media (prefers-reduced-motion:reduce){.pulse{animation:none}}
-.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:20px}
-.work{margin:0}
-.work .slot,.work>img{display:flex;width:100%;aspect-ratio:16/10;border-radius:10px;object-fit:cover}
-.work .slot{flex-direction:column;align-items:center;justify-content:center;gap:8px;background:var(--panel);border:2px dashed var(--line);color:var(--muted);font-size:14px}
-.work .slot svg{width:34px;height:34px}
-.work figcaption{padding:10px 2px 0;display:grid;gap:2px}
-.work figcaption span{color:var(--muted);font-size:14.5px}
+
 footer{background:#101B35;color:#C9D3EA;font-size:15px;margin-top:20px;border-top:1px solid var(--line)}
 footer p{margin:0}
 footer .social{display:flex;flex-wrap:wrap;gap:14px 22px}
@@ -65,6 +71,7 @@ html{background:#101B35}
 h1,h2,h3{color:var(--head)}
 .herobg{background:#101B35;color:#fff;padding-bottom:8px}
 .herobg h1,.herobg .brand{color:#fff}
+.herobg h2{color:#CBD5E1;}
 .herobg nav a{color:#E2E8F0}
 .herobg nav a:hover{color:#8DB6FF}
 .herobg .hero p.lead{color:#CBD5E1}
@@ -76,19 +83,10 @@ h1,h2,h3{color:var(--head)}
 .stats strong{display:block;font:700 clamp(34px,6vw,48px)/1 "Familjen Grotesk","Helvetica Neue",Arial,sans-serif;color:#FFFFFF}
 .stats span{display:block;margin-top:8px;font-size:15px;color:#CBD5E1}
 @media (max-width:600px){.stats{grid-template-columns:repeat(2,1fr);gap:10px;padding:26px 0 28px}.stats strong{font-size:25px}.stats span{font-size:13px;margin-top:6px}}
+
 h1,h2,h3,.sub,.card p,.steps p,.lead,.stats strong,.stats span,.desc{transition:color .2s ease}
 .card{transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
-@media (hover:hover){
-.card:hover{border-color:var(--signal);box-shadow:0 8px 22px rgba(40,120,255,.16);transform:translateY(-3px)}
-.card:hover h3,.steps li:hover h3,section h2:hover,.work:hover figcaption strong{color:var(--hot)}
-.card:hover p,.steps li:hover p,.work:hover figcaption span{color:var(--head)}
-.sub:hover{color:var(--hot)}
-.herobg h1:hover{color:#8DB6FF}
-.herobg .hero p.lead:hover{color:#FFFFFF}
-.stats>div:hover strong{color:#8DB6FF}
-.stats>div:hover span{color:#FFFFFF}
-footer .about strong:hover,footer .about .desc:hover{color:#8DB6FF}
-}
+
 @media (prefers-reduced-motion:reduce){.card{transition:none}.card:hover{transform:none}}
 .sub,.card p,.steps p,.hero p.lead,footer .about .desc{text-align:justify;text-align-last:left;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto}
 footer .about{max-width:370px}
@@ -104,13 +102,27 @@ html{scroll-padding-top:76px}
 header.site{position:sticky;top:0;z-index:40;background:rgba(16,27,53,.96);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid #243457;padding-top:env(safe-area-inset-top,0px)}
 header.site .navbar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;min-height:64px}
 header.site .navbar::after{content:""}
-header.site .brand{color:#fff;justify-self:start;display:flex;align-items:center;}
-header.site .brand img{height:40px;width:auto;display:block;}
+
+header.site .brand{color:#fff;justify-self:start;display:flex;align-items:center;gap:12px;}
+header.site .brand img{height:90px;width:auto;display:block;}
+
+.live-dot { width: 12px; height: 12px; background-color: #22c55e; border-radius: 50%; display: inline-block; position: relative; box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); animation: pulse-green 1.5s infinite; }
+@keyframes pulse-green { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); } }
+
 header.site nav{display:flex;justify-content:center;gap:6px 28px;flex-wrap:nowrap}
 header.site nav a{margin:0;padding:10px 2px;color:#E2E8F0;font-weight:500;font-size:15px;text-decoration:none;border-bottom:2px solid transparent}
 header.site nav a:hover{color:#8DB6FF;border-bottom-color:#8DB6FF}
 header.site a:focus-visible{outline:3px solid #fff;outline-offset:3px}
-@media (max-width:600px){header.site .navbar{grid-template-columns:1fr;min-height:52px}header.site .navbar::after,header.site .brand{display:none}header.site nav{gap:4px 14px}header.site nav a{font-size:14.5px;padding:12px 2px}}
+
+@media (max-width:768px){
+  header.site .navbar{display:flex; flex-direction:column; padding:10px 0;}
+  header.site .navbar::after{display:none}
+  header.site nav{gap:4px 14px; flex-wrap:wrap; margin-top: 12px; justify-content:center;}
+  header.site nav a{font-size:14.5px;padding:10px 2px}
+  header.site .brand{justify-self:center; margin:0 auto;}
+  header.site .brand img{height:60px;}
+}
+
 .eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:14px;font:500 12px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.22em;color:var(--muted)}
 .eyebrow::before{content:"";width:32px;height:1px;background:currentColor}
 #services h2,#why h2,#work h2{font-size:clamp(30px,4.8vw,52px);letter-spacing:-.02em}
@@ -127,10 +139,107 @@ details.svc summary:hover .ttl{color:#8DB6FF}
 .svc .chev{width:28px;height:28px;border:1.5px solid #5B6B8E;border-radius:50%;display:grid;place-items:center;flex:none;color:#fff}
 .svc .chev svg{transition:transform .25s ease}
 details.svc[open] .chev svg{transform:rotate(180deg)}
-.svc-body{padding:2px 22px 22px 62px}
-.svc-body p{margin:0;max-width:70ch;color:#CBD5E1;font-size:16px;line-height:1.65;text-align:justify;text-align-last:left;hyphens:auto;-webkit-hyphens:auto}
+
+/* অ্যাকর্ডিয়নের ভেতরের ডিজাইন (টেক্সট বামে, ছবি ডানে) */
+.svc-body{padding:20px 22px 22px 62px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;}
+.svc-body .text-content { display: flex; flex-direction: column; gap: 10px; }
+.svc-body p{margin:0; color:#CBD5E1;font-size:16px;line-height:1.6; white-space: nowrap;}
+
+/* ছবির স্লাইডার কন্টেইনার */
+.svc-body .project-img { 
+    width: 100%; 
+    border-radius: 8px; 
+    overflow: hidden; 
+    border: 1px solid #243457; 
+    position: relative; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    background: #1e293b;
+    cursor: pointer; /* ক্লিকযোগ্য বোঝানোর জন্য */
+}
+.svc-body .project-img img { 
+    width: 100%; 
+    height: auto; 
+    max-height: 300px; 
+    display: block; 
+    object-fit: cover; 
+    transition: opacity 0.3s ease;
+}
+
+/* ডান এবং বাম এরো বাটন */
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+    z-index: 10;
+}
+.nav-btn:hover { background: rgba(0, 0, 0, 0.8); }
+.nav-btn svg { width: 20px; height: 20px; }
+.prev-img-btn { left: 10px; }
+.next-img-btn { right: 10px; }
+
+/* --- ফুলস্ক্রিন ইমেজ ভিউয়ার (Lightbox) --- */
+.lightbox {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.lightbox.active {
+    display: flex;
+    opacity: 1;
+}
+.lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+.close-lightbox {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.close-lightbox:hover {
+    color: #ccc;
+}
+
+@media (max-width:800px){
+  .svc-body { grid-template-columns: 1fr; gap: 20px; padding-top: 0; }
+  .svc-body .project-img { max-width: 100%; margin: 0 auto; }
+  .svc-body p { white-space: normal; }
+  .close-lightbox { top: 10px; right: 20px; font-size: 30px; }
+}
+
 @media (prefers-reduced-motion:reduce){.svc .chev svg,details.svc,details.svc summary{transition:none}}
 @media (max-width:600px){details.svc summary{padding:16px 16px;gap:14px}.svc-body{padding:0 16px 18px 16px}}
+
 :root{--req:#D92D20}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--req:#FF7A7A}}
 :root[data-theme="dark"]{--req:#FF7A7A}
@@ -162,11 +271,6 @@ button.btn{font:inherit;font-weight:600;cursor:pointer;color:#fff;background:var
 .thanks p{margin:0 auto 10px;max-width:56ch;text-align:center}
 .thanks .tnote{font-size:15px;color:var(--muted)}
 .thanks .btn.alt{background:transparent;color:var(--signal);border-color:var(--signal);margin-top:12px}
-.pbody{display:grid;grid-template-columns:1fr minmax(0,420px);gap:16px 32px;align-items:center}
-.pbody .pinfo{order:-1}
-.svc-body .pinfo p{margin:0;max-width:none;text-align:left;text-align-last:left;font:700 clamp(20px,2.6vw,28px)/1.3 "Familjen Grotesk","Helvetica Neue",Arial,sans-serif;color:#FFFFFF}
-.svc-body .pinfo p.ph{font:500 16px/1.6 "Public Sans",system-ui,sans-serif;color:#8FA0C4}
-@media (max-width:700px){.pbody{grid-template-columns:1fr}}
 .cs{position:relative}
 .cs-btn{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;font:inherit;font-size:16px;color:var(--muted);background:var(--bg);border:1.5px solid var(--line);border-radius:8px;cursor:pointer;text-align:left}
 .cs-btn.has{color:var(--body)}
@@ -188,69 +292,93 @@ main>section:first-child{border-top:0}
 section{padding:56px 0;border-top:1px solid var(--line)}
 section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.01em}
 .sub{color:var(--muted);max-width:60ch;margin:0 0 30px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:18px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px}
-.card h3{font-size:21px;margin-bottom:8px}
-.card p{margin:0;color:var(--muted);font-size:15.5px}
 .steps{list-style:none;margin:0;padding:0;counter-reset:s;display:grid;gap:0}
 .steps li{counter-increment:s;display:grid;grid-template-columns:44px 1fr;gap:14px;padding:18px 0;border-bottom:1px solid var(--line)}
 .steps li::before{content:counter(s);font:700 26px "Familjen Grotesk",sans-serif;color:var(--hot)}
 .steps h3{font-size:20px;margin-bottom:4px}
 .steps p{margin:0;color:var(--muted);font-size:15.5px}
-.tl{display:grid;gap:16px}
-.tl .row{display:grid;grid-template-columns:150px 1fr;gap:18px;padding-bottom:16px;border-bottom:1px solid var(--line)}
-.tl .when{color:var(--muted);font-size:14.5px;font-weight:500}
-.tl h3{font-size:19px;margin-bottom:2px}
-.tl p{margin:0;color:var(--muted);font-size:15.5px}
-.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
-.tags span{border:1px solid var(--line);background:var(--panel);padding:5px 12px;border-radius:99px;font-size:14px}
-.cta{background:var(--ink);color:var(--bg);border-radius:12px;padding:38px 30px}
-.cta h2{margin-bottom:10px}
-.cta p{margin:0;max-width:55ch;opacity:.85}
-.cta .btn.main{background:var(--bg);color:var(--ink);border-color:var(--bg)}
 .wa-float{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(16,27,53,.35);z-index:50;text-decoration:none}
 .wa-float svg{width:32px;height:32px}
 .wa-float:hover{filter:brightness(.95)}
 .wa-float:focus-visible{outline:3px solid var(--signal);outline-offset:3px}
-@media (max-width:800px){.hero{grid-template-columns:1fr}.photo{margin:0 auto}.tl .row{grid-template-columns:1fr;gap:2px}nav a{margin:0 16px 0 0}}
-@media (max-width:600px){
-body{font-size:16px}
-.wrap{padding:0 18px}
-header.top{flex-direction:column;gap:6px;padding:16px 0 4px;text-align:center}
-nav{display:flex;justify-content:center;flex-wrap:wrap;gap:2px 18px}
-nav a{margin:0;padding:10px 2px}
-.hero{padding:16px 0 34px;gap:24px;text-align:center}
-.photo{order:-1;max-width:280px}
-.hero p.lead{font-size:17px;margin:16px auto 22px}
-.btns{justify-content:center}
-.btn{flex:1 1 140px;text-align:center}
-section{padding:40px 0}
-.flowrow{margin-bottom:36px}
-.flow{padding:12px}
-.steps li{grid-template-columns:34px 1fr;gap:10px}
-.steps li::before{font-size:22px}
-.card{padding:18px}
-footer .foot{padding:34px 0 28px}
-footer .social a{padding:8px}
-footer .legal{padding-bottom:88px}
+
+@media (max-width:800px){
+  .hero{grid-template-columns:1fr; text-align:center;}
+  .photo{order:-1;margin:0 auto}
+  .hero p.lead{margin:16px auto 22px}
+  .btns{justify-content:center}
+  .tl .row{grid-template-columns:1fr;gap:2px}
+  nav a{margin:0 16px 0 0}
 }
-/* --- Hero reviews (US clients, 5 star) --- */
+
+@media (max-width:600px){
+  body{font-size:16px}
+  .wrap{padding:0 18px}
+  header.top{flex-direction:column;gap:6px;padding:16px 0 4px;text-align:center}
+  nav{display:flex;justify-content:center;flex-wrap:wrap;gap:2px 18px}
+  nav a{margin:0;padding:10px 2px}
+  .hero{padding:16px 0 34px;gap:24px;text-align:center}
+  .photo{order:-1;max-width:280px;border-width:3px}
+  .hero p.lead{font-size:17px;margin:16px auto 22px}
+  .btns{justify-content:center}
+  .btn{flex:1 1 140px;text-align:center}
+  section{padding:40px 0}
+  .flowrow{margin-bottom:36px}
+  .flow{padding:12px}
+  .steps li{grid-template-columns:34px 1fr;gap:10px}
+  .steps li::before{font-size:22px}
+  footer .foot{padding:34px 0 28px}
+  footer .social a{padding:8px}
+  footer .legal{padding-bottom:88px}
+}
+/* --- Hero reviews (Trusted by 20+ businesses worldwide) --- */
 .hero-reviews{display:flex;align-items:center;gap:16px;margin-top:26px;flex-wrap:wrap}
 .hr-avatars{display:flex}
 .hr-avatars img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid #101B35;margin-left:-12px;background:#CBD5E1}
 .hr-avatars img:first-child{margin-left:0}
 .hr-meta{display:flex;flex-direction:column;gap:2px}
-.hr-stars{display:flex;gap:2px;line-height:0}
-.hr-text{margin:0;font-size:15px;color:#CBD5E1}
-.hr-text strong{color:#fff;font-weight:700}
+.hr-text{margin:0;font-size:15px;color:#CBD5E1; font-weight: 500;}
 @media (max-width:800px){.hero-reviews{justify-content:center}.hr-meta{align-items:center}}
+
+/* --- Available for New Clients Badge এবং হলুদ ডটের ফ্লে (Pulse) অ্যানিমেশন --- */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  background-color: transparent;
+  border: 1px solid #4B3B15;
+  color: #EAB308;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+.hero-badge::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: #EAB308;
+  border-radius: 50%;
+  margin-right: 10px;
+  animation: pulse-yellow 1.5s infinite;
+  box-shadow: 0 0 0 0 rgba(234, 179, 8, 0.7);
+}
+
+@keyframes pulse-yellow {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(234, 179, 8, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(234, 179, 8, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(234, 179, 8, 0); }
+}
 </style>
 </head>
 <body>
 <header class="site">
 <div class="wrap navbar">
-<!-- হেডার লোগো -->
-<div class="brand"><img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/trackpilotbyanis_logo.png" alt="TrackPilot Logo"></div>
+<div class="brand">
+  <span class="live-dot" title="Online"></span>
+  <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/trackpilotbyanis_logo.png" alt="TrackPilot Logo">
+</div>
 <nav aria-label="Main"><a href="#home">Home</a><a href="#services">Services</a><a href="#work">Projects</a><a href="#process">Process</a><a href="#contact">Contact</a></nav>
 </div>
 </header>
@@ -259,10 +387,16 @@ footer .legal{padding-bottom:88px}
 
 <div class="hero">
   <div>
-    <h1>Accurate data, so your ad spend works harder.</h1>
-    <p class="lead">I'm an e-commerce tracking and analytics specialist. I set up Meta Conversions API, GA4 e-commerce tracking and server-side GTM so brands can trust the numbers behind their ads.</p>
+    <div class="hero-badge">Available for New Clients</div>
+    <h1>I'm Anisur Rahman!</h1>
+    <h2>A Meta Ads and Conversion Tracking & Data Analytics Specialist.</h2>
+    <p class="lead">
+      I help businesses grow through data-driven Meta Ads campaigns and reliable tracking solutions, including Meta CAPI, GA4 E-commerce Tracking, and Server-Side GTM.<br><br>
+      My focus is simple: accurate data, smarter decisions, and better ad performance.
+    </p>
     <div class="btns"><a class="btn main" href="#contact">Hire me</a><a class="btn alt" href="#services">See what I do</a></div>
-    <div class="hero-reviews" aria-label="Client reviews from the United States">
+    
+    <div class="hero-reviews" aria-label="Client Trust">
       <div class="hr-avatars">
         <img src="https://i.pravatar.cc/80?img=12" alt="Reviewer 1" width="44" height="44">
         <img src="https://i.pravatar.cc/80?img=32" alt="Reviewer 2" width="44" height="44">
@@ -271,19 +405,11 @@ footer .legal{padding-bottom:88px}
         <img src="https://i.pravatar.cc/80?img=68" alt="Reviewer 5" width="44" height="44">
       </div>
       <div class="hr-meta">
-        <div class="hr-stars" aria-label="Rated 5 out of 5 stars">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="#FFC400" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="#FFC400" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="#FFC400" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="#FFC400" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="#FFC400" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        </div>
-        <p class="hr-text"><strong>5.0</strong> from 20+ US clients</p>
+        <p class="hr-text"><strong>Trusted by 20+ businesses worldwide</strong></p>
       </div>
     </div>
   </div>
-  <!-- হিরো সেকশন লোগো -->
-  <div class="photo"><img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/trackpilotbyanis_logo.png" alt="TrackPilot by Anis Logo"></div>
+  <div class="photo"><img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/my_pic.png" alt="Md. Anisur Rahman"></div>
 </div>
 
 <div class="stats"><div><strong>3+</strong><span>Years experience</span></div><div><strong>50+</strong><span>Projects completed</span></div><div><strong>20+</strong><span>Clients</span></div><div><strong>$50,000</strong><span>Total ad spend</span></div></div>
@@ -321,23 +447,43 @@ footer .legal{padding-bottom:88px}
   <div class="svc-list">
     <details class="svc" name="svc">
       <summary><span class="num">01</span><span class="ttl">Meta Ads management</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
-      <div class="svc-body"><p>Campaign setup, audience targeting and ongoing optimization on Facebook and Instagram, driven by accurate conversion data.</p></div>
+      <div class="svc-body">
+        <div class="text-content">
+          <p>Campaign setup, audience targeting and ongoing optimization on Facebook and Instagram, driven by accurate conversion data.</p>
+        </div>
+      </div>
     </details>
     <details class="svc" name="svc">
       <summary><span class="num">02</span><span class="ttl">Meta Ads &amp; Conversion API</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
-      <div class="svc-body"><p>Pixel plus Conversions API with event deduplication and match quality improvements, so Meta optimizes on real purchases.</p></div>
+      <div class="svc-body">
+         <div class="text-content">
+          <p>Pixel plus Conversions API with event deduplication and match quality improvements, so Meta optimizes on real purchases.</p>
+        </div>
+      </div>
     </details>
     <details class="svc" name="svc">
       <summary><span class="num">03</span><span class="ttl">GA4 e-commerce tracking</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
-      <div class="svc-body"><p>Product views, add to cart, checkout steps and purchases, with clean data you can build funnels and reports on.</p></div>
+      <div class="svc-body">
+         <div class="text-content">
+          <p>Product views, add to cart, checkout steps and purchases, with clean data you can build funnels and reports on.</p>
+        </div>
+      </div>
     </details>
     <details class="svc" name="svc">
       <summary><span class="num">04</span><span class="ttl">Server-side GTM</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
-      <div class="svc-body"><p>Browser and server containers hosted on Stape or Google Cloud, configured for reliable, first-party data collection.</p></div>
+      <div class="svc-body">
+         <div class="text-content">
+          <p>Browser and server containers hosted on Stape or Google Cloud, configured for reliable, first-party data collection.</p>
+        </div>
+      </div>
     </details>
     <details class="svc" name="svc">
       <summary><span class="num">05</span><span class="ttl">Google Ads tracking</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
-      <div class="svc-body"><p>Conversion tracking and remarketing audiences that match what your store actually sold.</p></div>
+      <div class="svc-body">
+         <div class="text-content">
+          <p>Conversion tracking and remarketing audiences that match what your store actually sold.</p>
+        </div>
+      </div>
     </details>
   </div>
 </section>
@@ -349,53 +495,174 @@ footer .legal{padding-bottom:88px}
   <div class="svc-list">
     <details class="svc" name="why">
       <summary><span class="num">01</span><span class="ttl">Recover lost conversions</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
-      <div class="svc-body"><p>Ad blockers, Safari and iOS limits stop browser pixels from reporting some sales. Events sent from the server are not affected by these browser limits.</p></div>
+      <div class="svc-body">
+         <div class="text-content">
+          <p>Ad blockers, Safari and iOS limits stop browser pixels from reporting some sales. Events sent from the server are not affected by these browser limits.</p>
+        </div>
+      </div>
     </details>
     <details class="svc" name="why">
       <summary><span class="num">02</span><span class="ttl">Better ad optimization</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
-      <div class="svc-body"><p>Meta and Google learn from the conversions they receive. Fuller, cleaner data helps them find the right buyers and reduces wasted spend.</p></div>
+      <div class="svc-body">
+         <div class="text-content">
+          <p>Meta and Google learn from the conversions they receive. Fuller, cleaner data helps them find the right buyers and reduces wasted spend.</p>
+        </div>
+      </div>
     </details>
     <details class="svc" name="why">
       <summary><span class="num">03</span><span class="ttl">Control over your data</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
-      <div class="svc-body"><p>You decide which data goes to which platform, and it can be sent through your own domain.</p></div>
+      <div class="svc-body">
+         <div class="text-content">
+          <p>You decide which data goes to which platform, and it can be sent through your own domain.</p>
+        </div>
+      </div>
     </details>
     <details class="svc" name="why">
       <summary><span class="num">04</span><span class="ttl">Faster pages</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
-      <div class="svc-body"><p>Moving tags off the browser means fewer scripts for your visitors to load, so pages open faster.</p></div>
+      <div class="svc-body">
+         <div class="text-content">
+          <p>Moving tags off the browser means fewer scripts for your visitors to load, so pages open faster.</p>
+        </div>
+      </div>
     </details>
   </div>
-  <p class="sub" style="margin:26px 0 0;max-width:none;text-align-last:left">Server-side tracking still follows user consent and privacy rules, and needs deduplication so one sale is never counted twice. Both are part of how I set it up.</p>
+  <p class="sub" style="margin:26px 0 0;max-width:none;text-align:left">Server-side tracking still follows user consent and privacy rules, and needs deduplication so one sale is never counted twice. Both are part of how I set it up.</p>
 </section>
 
 <section id="work">
-  <div class="eyebrow">PROJECTS</div>
-  <h2>My projects</h2>
-  <p class="sub">Screenshots from real setups: event debugging, dashboards and reports.</p>
+  <div class="eyebrow">MY PROJECTS</div>
+  <h2>Featured Work</h2>
+  <p class="sub">A detailed look at the tracking, analytics, and ad setups I build for e-commerce brands.</p>
   <div class="svc-list">
+    
+    <!-- Project 1 -->
     <details class="svc" name="proj">
-      <summary><span class="num">01</span><span class="ttl">Project name</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
-      <div class="svc-body"><div class="pbody"><figure class="work" style="margin:0"><div class="slot"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg><span>Project image</span></div></figure><div class="pinfo"><p>Web analytics GA4 and SS</p></div></div></div>
+      <summary><span class="num">01</span><span class="ttl">Meta Ads Campaign Management</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+      <div class="svc-body">
+        <div class="text-content">
+          <p>• Facebook & Instagram Ads</p>
+        </div>
+        <div class="project-img">
+          <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/cookie_boat_cmp__anis(1).jpg" class="slider-img" data-images='["https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/cookie_boat_cmp__anis(1).jpg", "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/my_pic.png"]' onclick="openLightbox(this)" alt="Meta Ads Campaign">
+          <button class="nav-btn prev-img-btn" aria-label="Previous Image" onclick="prevImage(event, this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="nav-btn next-img-btn" aria-label="Next Image" onclick="nextImage(event, this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
     </details>
+    
+    <!-- Project 2 -->
     <details class="svc" name="proj">
-      <summary><span class="num">02</span><span class="ttl">Project name</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
-      <div class="svc-body"><div class="pbody"><figure class="work" style="margin:0"><div class="slot"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg><span>Project image</span></div></figure><div class="pinfo"><p class="ph">Short note on what you set up</p></div></div></div>
+      <summary><span class="num">02</span><span class="ttl">Meta Pixel & Conversions API Setup</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+      <div class="svc-body">
+        <div class="text-content">
+          <p>• Meta Pixel</p>
+          <p>• Meta CAPI</p>
+          <p>• Event Tracking</p>
+          <p>• Event Deduplication</p>
+        </div>
+        <div class="project-img">
+          <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/my_pic.png" class="slider-img" data-images='["https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/my_pic.png", "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/cookie_boat_cmp__anis(1).jpg"]' onclick="openLightbox(this)" alt="Meta CAPI">
+          <button class="nav-btn prev-img-btn" aria-label="Previous Image" onclick="prevImage(event, this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="nav-btn next-img-btn" aria-label="Next Image" onclick="nextImage(event, this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
     </details>
+
+    <!-- Project 3 -->
     <details class="svc" name="proj">
-      <summary><span class="num">03</span><span class="ttl">Project name</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
-      <div class="svc-body"><div class="pbody"><figure class="work" style="margin:0"><div class="slot"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg><span>Project image</span></div></figure><div class="pinfo"><p class="ph">Short note on what you set up</p></div></div></div>
+      <summary><span class="num">03</span><span class="ttl">GA4 E-commerce Tracking Setup</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+      <div class="svc-body">
+        <div class="text-content">
+          <p>• GA4 & GTM</p>
+          <p>• E-commerce Events</p>
+          <p>• Purchase Tracking</p>
+          <p>• Data Layer</p>
+        </div>
+        <div class="project-img">
+          <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/my_pic.png" class="slider-img" data-images='["https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/my_pic.png", "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/cookie_boat_cmp__anis(1).jpg"]' onclick="openLightbox(this)" alt="GA4 Setup">
+          <button class="nav-btn prev-img-btn" aria-label="Previous Image" onclick="prevImage(event, this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="nav-btn next-img-btn" aria-label="Next Image" onclick="nextImage(event, this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
     </details>
+
+    <!-- Project 4 -->
     <details class="svc" name="proj">
-      <summary><span class="num">04</span><span class="ttl">Project name</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
-      <div class="svc-body"><div class="pbody"><figure class="work" style="margin:0"><div class="slot"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg><span>Project image</span></div></figure><div class="pinfo"><p class="ph">Short note on what you set up</p></div></div></div>
+      <summary><span class="num">04</span><span class="ttl">Server-Side GTM Implementation</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+      <div class="svc-body">
+        <div class="text-content">
+          <p>• Server-Side Tracking</p>
+          <p>• Stape Configuration</p>
+          <p>• Browser & Server Events</p>
+        </div>
+        <div class="project-img">
+          <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/my_pic.png" class="slider-img" data-images='["https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/my_pic.png", "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/cookie_boat_cmp__anis(1).jpg"]' onclick="openLightbox(this)" alt="Server-Side GTM">
+          <button class="nav-btn prev-img-btn" aria-label="Previous Image" onclick="prevImage(event, this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="nav-btn next-img-btn" aria-label="Next Image" onclick="nextImage(event, this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
     </details>
+
+    <!-- Project 5 -->
     <details class="svc" name="proj">
-      <summary><span class="num">05</span><span class="ttl">Project name</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
-      <div class="svc-body"><div class="pbody"><figure class="work" style="margin:0"><div class="slot"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg><span>Project image</span></div></figure><div class="pinfo"><p class="ph">Short note on what you set up</p></div></div></div>
+      <summary><span class="num">05</span><span class="ttl">Google Ads Conversion Tracking</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+      <div class="svc-body">
+        <div class="text-content">
+          <p>• Purchase Tracking</p>
+          <p>• Lead Tracking</p>
+          <p>• Conversion Setup</p>
+          <p>• Enhanced Conversions</p>
+        </div>
+        <div class="project-img">
+          <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/my_pic.png" class="slider-img" data-images='["https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/my_pic.png", "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/cookie_boat_cmp__anis(1).jpg"]' onclick="openLightbox(this)" alt="Google Ads Tracking">
+          <button class="nav-btn prev-img-btn" aria-label="Previous Image" onclick="prevImage(event, this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="nav-btn next-img-btn" aria-label="Next Image" onclick="nextImage(event, this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
     </details>
+
+    <!-- Project 6 -->
     <details class="svc" name="proj">
-      <summary><span class="num">06</span><span class="ttl">Project name</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
-      <div class="svc-body"><div class="pbody"><figure class="work" style="margin:0"><div class="slot"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg><span>Project image</span></div></figure><div class="pinfo"><p class="ph">Short note on what you set up</p></div></div></div>
+      <summary><span class="num">06</span><span class="ttl">Marketing Analytics & Reporting</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+      <div class="svc-body">
+        <div class="text-content">
+          <p>• Looker Studio</p>
+          <p>• GA4 Reports</p>
+          <p>• ROAS & CPA Analysis</p>
+          <p>• Performance Dashboard</p>
+        </div>
+        <div class="project-img">
+          <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/my_pic.png" class="slider-img" data-images='["https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/my_pic.png", "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/cookie_boat_cmp__anis(1).jpg"]' onclick="openLightbox(this)" alt="Marketing Analytics">
+          <button class="nav-btn prev-img-btn" aria-label="Previous Image" onclick="prevImage(event, this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="nav-btn next-img-btn" aria-label="Next Image" onclick="nextImage(event, this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
     </details>
+
   </div>
 </section>
 
@@ -452,7 +719,86 @@ footer .legal{padding-bottom:88px}
 </div>
 </footer>
 <a class="wa-float" href="https://wa.me/8801626868084" target="_blank" rel="noopener noreferrer" aria-label="Message me on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 21l1.600-4.600A8.500 8.500 0 1 1 8 19.600L3 21z"/><path d="M9.200 8.800c-.4.800-.2 2 1 3.400 1.200 1.400 2.600 2.100 3.500 1.900l.9-.9-1.800-1-.8.600c-.8-.4-1.500-1.100-1.900-1.900l.6-.8-1-1.800z" fill="currentColor" stroke="none"/></svg></a>
+
+<!-- Lightbox Modal -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+    <span class="close-lightbox" onclick="closeLightbox(event)">&times;</span>
+    <img id="lightbox-img" src="" alt="Enlarged Image">
+</div>
+
 <script>
+// ইমেজ স্লাইডার ফাংশন (পরবর্তী ছবি)
+function nextImage(e, btn) {
+    e.stopPropagation(); // ক্লিক ইভেন্ট বাবলিং বন্ধ করে
+    var img = btn.parentElement.querySelector('.slider-img');
+    var images = JSON.parse(img.getAttribute('data-images'));
+    var currentSrc = img.src;
+    
+    var currentIndex = images.findIndex(function(url) {
+        return currentSrc.includes(url) || url.includes(currentSrc);
+    });
+    
+    if (currentIndex === -1) currentIndex = 0;
+    
+    var nextIndex = (currentIndex + 1) % images.length;
+    img.style.opacity = '0';
+    
+    setTimeout(function() {
+        img.src = images[nextIndex];
+        img.style.opacity = '1';
+    }, 200);
+}
+
+// ইমেজ স্লাইডার ফাংশন (আগের ছবি)
+function prevImage(e, btn) {
+    e.stopPropagation(); // ক্লিক ইভেন্ট বাবলিং বন্ধ করে
+    var img = btn.parentElement.querySelector('.slider-img');
+    var images = JSON.parse(img.getAttribute('data-images'));
+    var currentSrc = img.src;
+    
+    var currentIndex = images.findIndex(function(url) {
+        return currentSrc.includes(url) || url.includes(currentSrc);
+    });
+    
+    if (currentIndex === -1) currentIndex = 0;
+    
+    var prevIndex = (currentIndex - 1 + images.length) % images.length;
+    img.style.opacity = '0';
+    
+    setTimeout(function() {
+        img.src = images[prevIndex];
+        img.style.opacity = '1';
+    }, 200);
+}
+
+// লাইটবক্স ওপেন করা
+function openLightbox(img) {
+    var lightbox = document.getElementById('lightbox');
+    var lightboxImg = document.getElementById('lightbox-img');
+    lightboxImg.src = img.src;
+    lightbox.style.display = 'flex'; // ডিসপ্লে ফ্লেক্স করা হলো
+    setTimeout(function() {
+        lightbox.classList.add('active'); // অ্যানিমেশনের জন্য
+    }, 10);
+}
+
+// লাইটবক্স ক্লোজ করা
+function closeLightbox(e) {
+    if (e) e.stopPropagation(); // ইভেন্ট বাবলিং বন্ধ
+    var lightbox = document.getElementById('lightbox');
+    lightbox.classList.remove('active');
+    setTimeout(function() {
+        lightbox.style.display = 'none';
+    }, 300); // ট্রানজিশন শেষ হওয়ার পর ডিসপ্লে নান
+}
+
+// লাইটবক্সের ভেতরে ছবির বাইরে ক্লিক করলে বন্ধ হবে
+document.getElementById('lightbox').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeLightbox(e);
+    }
+});
+
 (function(){
 var f=document.getElementById('cf');if(!f)return;
 var countries=['Afghanistan','Albania','Algeria','Andorra','Angola','Antigua and Barbuda','Argentina','Armenia','Australia','Austria','Azerbaijan','Bahamas','Bahrain','Bangladesh','Barbados','Belarus','Belgium','Belize','Benin','Bhutan','Bolivia','Bosnia and Herzegovina','Botswana','Brazil','Brunei','Bulgaria','Burkina Faso','Burundi','Cabo Verde','Cambodia','Cameroon','Canada','Central African Republic','Chad','Chile','China','Colombia','Comoros','Congo (Republic of the)','Congo (Democratic Republic of the)','Costa Rica','Côte d’Ivoire','Croatia','Cuba','Cyprus','Czechia','Denmark','Djibouti','Dominica','Dominican Republic','Ecuador','Egypt','El Salvador','Equatorial Guinea','Eritrea','Estonia','Eswatini','Ethiopia','Fiji','Finland','France','Gabon','Gambia','Georgia','Germany','Ghana','Greece','Grenada','Guatemala','Guinea','Guinea-Bissau','Guyana','Haiti','Honduras','Hong Kong','Hungary','Iceland','India','Indonesia','Iran','Iraq','Ireland','Israel','Italy','Jamaica','Japan','Jordan','Kazakhstan','Kenya','Kiribati','Kosovo','Kuwait','Kyrgyzstan','Laos','Latvia','Lebanon','Lesotho','Liberia','Libya','Liechtenstein','Lithuania','Luxembourg','Macao','Madagascar','Malawi','Malaysia','Maldives','Mali','Malta','Marshall Islands','Mauritania','Mauritius','Mexico','Micronesia','Moldova','Monaco','Mongolia','Montenegro','Morocco','Mozambique','Myanmar','Namibia','Nauru','Nepal','Netherlands','New Zealand','Nicaragua','Niger','Nigeria','North Korea','North Macedonia','Norway','Oman','Pakistan','Palau','Palestine','Panama','Papua New Guinea','Paraguay','Peru','Philippines','Poland','Portugal','Puerto Rico','Qatar','Romania','Russia','Rwanda','Saint Kitts and Nevis','Saint Lucia','Saint Vincent and the Grenadines','Samoa','San Marino','São Tomé and Príncipe','Saudi Arabia','Senegal','Serbia','Seychelles','Sierra Leone','Singapore','Slovakia','Slovenia','Solomon Islands','Somalia','South Africa','South Korea','South Sudan','Spain','Sri Lanka','Sudan','Suriname','Sweden','Switzerland','Syria','Taiwan','Tajikistan','Tanzania','Thailand','Timor-Leste','Togo','Tonga','Trinidad and Tobago','Tunisia','Turkey','Turkmenistan','Tuvalu','Uganda','Ukraine','United Arab Emirates','United Kingdom','United States','Uruguay','Uzbekistan','Vanuatu','Vatican City','Venezuela','Vietnam','Yemen','Zambia','Zimbabwe'];
