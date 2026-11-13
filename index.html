@@ -19,7 +19,6 @@ h1,h2,h3{font-family:"Familjen Grotesk","Helvetica Neue",Arial,sans-serif;line-h
 a{color:var(--signal)}
 a:focus-visible,button:focus-visible{outline:3px solid var(--hot);outline-offset:3px}
 
-/* কন্টেইনার সাইজ ১৪০০ পিক্সেল */
 .wrap{max-width:1400px;margin:0 auto;padding:0 40px}
 
 header.top{display:flex;justify-content:space-between;align-items:center;padding:22px 0;gap:16px;flex-wrap:wrap}
@@ -140,14 +139,20 @@ details.svc summary:hover .ttl{color:#8DB6FF}
 .svc .chev svg{transition:transform .25s ease}
 details.svc[open] .chev svg{transform:rotate(180deg)}
 
-/* অ্যাকর্ডিয়নের ভেতরের ডিজাইন (টেক্সট বামে, ছবি ডানে) */
-.svc-body{padding:20px 22px 22px 62px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;}
+.svc-body{
+    padding:20px 22px 22px 62px; 
+    display: grid; 
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 20px; 
+    align-items: center;
+    position: relative;
+}
 .svc-body .text-content { display: flex; flex-direction: column; gap: 10px; }
-.svc-body p{margin:0; color:#CBD5E1;font-size:16px;line-height:1.6; white-space: nowrap;}
+.svc-body p{margin:0; color:#CBD5E1;font-size:16px;line-height:1.6; white-space: normal;}
 
-/* ছবির স্লাইডার কন্টেইনার */
 .svc-body .project-img { 
     width: 100%; 
+    aspect-ratio: 16/10; 
     border-radius: 8px; 
     overflow: hidden; 
     border: 1px solid #243457; 
@@ -156,18 +161,49 @@ details.svc[open] .chev svg{transform:rotate(180deg)}
     align-items: center; 
     justify-content: center;
     background: #1e293b;
-    cursor: pointer; /* ক্লিকযোগ্য বোঝানোর জন্য */
-}
-.svc-body .project-img img { 
-    width: 100%; 
-    height: auto; 
-    max-height: 300px; 
-    display: block; 
-    object-fit: cover; 
-    transition: opacity 0.3s ease;
+    cursor: pointer;
 }
 
-/* ডান এবং বাম এরো বাটন */
+.svc-body .project-img img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: contain; 
+    display: block; 
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.svc-body .project-img::after {
+    content: "+";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    width: 50px;
+    height: 50px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: 300;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none; 
+    z-index: 20;
+    border: 2px solid rgba(255,255,255,0.8);
+}
+
+.svc-body .project-img:hover::after {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.svc-body .project-img:hover img {
+    transform: scale(1.02);
+}
+
 .nav-btn {
     position: absolute;
     top: 50%;
@@ -183,14 +219,66 @@ details.svc[open] .chev svg{transform:rotate(180deg)}
     justify-content: center;
     cursor: pointer;
     transition: background 0.2s;
-    z-index: 10;
+    z-index: 30; 
 }
 .nav-btn:hover { background: rgba(0, 0, 0, 0.8); }
 .nav-btn svg { width: 20px; height: 20px; }
 .prev-img-btn { left: 10px; }
 .next-img-btn { right: 10px; }
 
-/* --- ফুলস্ক্রিন ইমেজ ভিউয়ার (Lightbox) --- */
+.outer-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    background: #101B35;
+    border: 1.5px solid #2878FF;
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 40;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.outer-nav-btn:hover {
+    background: #2878FF;
+    transform: translateY(-50%) scale(1.1);
+}
+.outer-nav-btn svg { width: 22px; height: 22px; }
+.prev-outer-btn { left: 10px; }
+.next-outer-btn { right: 10px; }
+
+.step-counter {
+    display: inline-block;
+    font: 500 13px ui-monospace,Menlo,Consolas,monospace;
+    letter-spacing: .1em;
+    color: #8DB6FF;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    border: 1px solid #243457;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: rgba(40, 120, 255, 0.1);
+}
+
+.slide-title {
+    font-size: 18px; 
+    margin-bottom: 8px; 
+    font-weight: 700; 
+    line-height: 1.4;
+    color: #FFFFFF;
+}
+.slide-desc {
+    white-space: normal;
+    color: #CBD5E1;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
 .lightbox {
     display: none; 
     position: fixed; 
@@ -225,16 +313,59 @@ details.svc[open] .chev svg{transform:rotate(180deg)}
     font-weight: bold;
     cursor: pointer;
     transition: color 0.2s;
+    z-index: 1010;
 }
 .close-lightbox:hover {
     color: #ccc;
 }
+
+.lightbox-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: 1.5px solid #fff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    z-index: 1010;
+}
+.lightbox-nav-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+    transform: translateY(-50%) scale(1.1);
+}
+.lightbox-nav-btn svg { width: 24px; height: 24px; }
+.lightbox-prev-btn { left: 20px; }
+.lightbox-next-btn { right: 20px; }
 
 @media (max-width:800px){
   .svc-body { grid-template-columns: 1fr; gap: 20px; padding-top: 0; }
   .svc-body .project-img { max-width: 100%; margin: 0 auto; }
   .svc-body p { white-space: normal; }
   .close-lightbox { top: 10px; right: 20px; font-size: 30px; }
+  
+  .outer-nav-btn {
+      width: 38px;
+      height: 38px;
+      top: auto;
+      bottom: 10px; 
+      transform: none;
+  }
+  .outer-nav-btn:hover {
+      transform: scale(1.1);
+  }
+  .prev-outer-btn { left: 10px; bottom: 10px; }
+  .next-outer-btn { right: 10px; bottom: 10px; }
+  
+  .lightbox-nav-btn { width: 40px; height: 40px; }
+  .lightbox-prev-btn { left: 10px; }
+  .lightbox-next-btn { right: 10px; }
 }
 
 @media (prefers-reduced-motion:reduce){.svc .chev svg,details.svc,details.svc summary{transition:none}}
@@ -338,7 +469,7 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
 .hr-avatars img:first-child{margin-left:0}
 .hr-meta{display:flex;flex-direction:column;gap:2px}
 .hr-text{margin:0;font-size:15px;color:#CBD5E1; font-weight: 500;}
-.hr-text strong { color: #FFC400; } /* হলুদ কালার */
+.hr-text strong { color: #FFC400; }
 @media (max-width:800px){.hero-reviews{justify-content:center}.hr-meta{align-items:center}}
 
 /* --- Available for New Clients Badge এবং হলুদ ডটের ফ্লে (Pulse) অ্যানিমেশন --- */
@@ -371,10 +502,35 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
   70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(234, 179, 8, 0); }
   100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(234, 179, 8, 0); }
 }
-/* হলুদ কালার ক্লাস */
 .text-yellow {
     color: #FFC400;
     font-weight: 700;
+}
+
+.multi-select { position: relative; }
+.multi-select-btn {
+    width: 100%; padding: 12px 14px; font: inherit; font-size: 16px;
+    background: var(--bg); border: 1.5px solid var(--line); border-radius: 8px;
+    display: flex; justify-content: space-between; align-items: center; cursor: pointer;
+    color: var(--muted);
+}
+.multi-select-btn.has-val { color: var(--body); }
+.multi-select-btn:focus-visible, .multi-select-btn.open { outline: 3px solid rgba(40,120,255,.28); border-color: var(--signal); }
+.multi-select-panel {
+    position: absolute; left: 0; right: 0; top: calc(100% + 6px); z-index: 30;
+    background: var(--bg); border: 1px solid var(--line); border-radius: 12px;
+    box-shadow: 0 14px 34px rgba(16,27,53,.22); padding: 10px;
+    max-height: 260px; overflow-y: auto; display: none;
+}
+.multi-select-panel.open { display: block; }
+.multi-option {
+    display: flex; align-items: center; gap: 10px; padding: 10px 12px;
+    border-radius: 8px; cursor: pointer; font-size: 15.5px; color: var(--body);
+    transition: background 0.2s;
+}
+.multi-option:hover { background: rgba(40,120,255,.14); }
+.multi-option input[type="checkbox"] {
+    width: 18px; height: 18px; cursor: pointer; accent-color: var(--signal);
 }
 </style>
 </head>
@@ -541,131 +697,176 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
   <p class="sub">A detailed look at the tracking, analytics, and ad setups I build for e-commerce brands.</p>
   <div class="svc-list">
     
-    <!-- Project 1 -->
+    <!-- Project 1 (Data Analytics এর মতো) -->
     <details class="svc" name="proj">
       <summary><span class="num">01</span><span class="ttl">Meta Ads Campaign Management</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
       <div class="svc-body">
+        
+        <button class="outer-nav-btn prev-outer-btn" aria-label="Previous Slide" onclick="prevSlide(event, this, 0)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+
         <div class="text-content">
-          <p>• Facebook & Instagram Ads</p>
+          <div class="step-counter" id="stepCounter0">Step 1 of 2</div>
+          <h4 class="slide-title">Ecommerce Business - Data Analysis Overview</h4>
+          <p class="slide-desc">A full walkthrough of the e-commerce data analysis process, covering raw data collection, key metrics review and overall performance overview.</p>
         </div>
-        <div class="project-img">
-          <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/cookie_boat_cmp__anis(1).jpg" class="slider-img" data-images='["https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/cookie_boat_cmp__anis(1).jpg", "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/my_pic.png"]' onclick="openLightbox(this)" alt="Meta Ads Campaign">
-          <button class="nav-btn prev-img-btn" aria-label="Previous Image" onclick="prevImage(event, this)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
-          <button class="nav-btn next-img-btn" aria-label="Next Image" onclick="nextImage(event, this)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-          </button>
+        
+        <div class="project-img" id="dataAnalyticsImgContainer0">
+          <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(1).jpg" class="slider-img" data-images='["https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(1).jpg","https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(2).jpg"]' onclick="openLightbox(this)" alt="Data Analytics Overview">
+          <span class="img-counter" style="position: absolute; bottom: 10px; right: 10px; background: #FFD54F; color: #101B35; padding: 4px 10px; border-radius: 12px; font-size: 13px; font-weight: 700; z-index: 5;">1 / 16</span>
         </div>
+
+        <button class="outer-nav-btn next-outer-btn" aria-label="Next Slide" onclick="nextSlide(event, this, 0)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
       </div>
     </details>
-    
-    <!-- Project 2 -->
+
+    <!-- Project 2 (Data Analytics এর মতো) -->
     <details class="svc" name="proj">
       <summary><span class="num">02</span><span class="ttl">Meta Pixel & Conversions API Setup</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
       <div class="svc-body">
+        
+        <button class="outer-nav-btn prev-outer-btn" aria-label="Previous Slide" onclick="prevSlide(event, this, 1)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+
         <div class="text-content">
-          <p>• Meta Pixel</p>
-          <p>• Meta CAPI</p>
-          <p>• Event Tracking</p>
-          <p>• Event Deduplication</p>
+          <div class="step-counter" id="stepCounter1">Step 1 of 2</div>
+          <h4 class="slide-title">Ecommerce Business - Data Analysis Overview</h4>
+          <p class="slide-desc">A full walkthrough of the e-commerce data analysis process, covering raw data collection, key metrics review and overall performance overview.</p>
         </div>
-        <div class="project-img">
-          <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/my_pic.png" class="slider-img" data-images='["https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/my_pic.png", "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/cookie_boat_cmp__anis(1).jpg"]' onclick="openLightbox(this)" alt="Meta CAPI">
-          <button class="nav-btn prev-img-btn" aria-label="Previous Image" onclick="prevImage(event, this)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
-          <button class="nav-btn next-img-btn" aria-label="Next Image" onclick="nextImage(event, this)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-          </button>
+        
+        <div class="project-img" id="dataAnalyticsImgContainer1">
+          <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(1).jpg" class="slider-img" data-images='["https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(1).jpg","https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(2).jpg"]' onclick="openLightbox(this)" alt="Data Analytics Overview">
+          <span class="img-counter" style="position: absolute; bottom: 10px; right: 10px; background: #FFD54F; color: #101B35; padding: 4px 10px; border-radius: 12px; font-size: 13px; font-weight: 700; z-index: 5;">1 / 16</span>
         </div>
+
+        <button class="outer-nav-btn next-outer-btn" aria-label="Next Slide" onclick="nextSlide(event, this, 1)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
       </div>
     </details>
 
-    <!-- Project 3 -->
+    <!-- Project 3 (Data Analytics এর মতো) -->
     <details class="svc" name="proj">
       <summary><span class="num">03</span><span class="ttl">GA4 E-commerce Tracking Setup</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
       <div class="svc-body">
+        
+        <button class="outer-nav-btn prev-outer-btn" aria-label="Previous Slide" onclick="prevSlide(event, this, 2)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+
         <div class="text-content">
-          <p>• GA4 & GTM</p>
-          <p>• E-commerce Events</p>
-          <p>• Purchase Tracking</p>
-          <p>• Data Layer</p>
+          <div class="step-counter" id="stepCounter2">Step 1 of 2</div>
+          <h4 class="slide-title">Ecommerce Business - Data Analysis Overview</h4>
+          <p class="slide-desc">A full walkthrough of the e-commerce data analysis process, covering raw data collection, key metrics review and overall performance overview.</p>
         </div>
-        <div class="project-img">
-          <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/my_pic.png" class="slider-img" data-images='["https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/my_pic.png", "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/cookie_boat_cmp__anis(1).jpg"]' onclick="openLightbox(this)" alt="GA4 Setup">
-          <button class="nav-btn prev-img-btn" aria-label="Previous Image" onclick="prevImage(event, this)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
-          <button class="nav-btn next-img-btn" aria-label="Next Image" onclick="nextImage(event, this)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-          </button>
+        
+        <div class="project-img" id="dataAnalyticsImgContainer2">
+          <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(1).jpg" class="slider-img" data-images='["https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(1).jpg","https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(2).jpg"]' onclick="openLightbox(this)" alt="Data Analytics Overview">
+          <span class="img-counter" style="position: absolute; bottom: 10px; right: 10px; background: #FFD54F; color: #101B35; padding: 4px 10px; border-radius: 12px; font-size: 13px; font-weight: 700; z-index: 5;">1 / 16</span>
         </div>
+
+        <button class="outer-nav-btn next-outer-btn" aria-label="Next Slide" onclick="nextSlide(event, this, 2)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
       </div>
     </details>
 
-    <!-- Project 4 -->
+    <!-- Project 4 (Data Analytics এর মতো) -->
     <details class="svc" name="proj">
       <summary><span class="num">04</span><span class="ttl">Server-Side GTM Implementation</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
       <div class="svc-body">
+        
+        <button class="outer-nav-btn prev-outer-btn" aria-label="Previous Slide" onclick="prevSlide(event, this, 3)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+
         <div class="text-content">
-          <p>• Server-Side Tracking</p>
-          <p>• Stape Configuration</p>
-          <p>• Browser & Server Events</p>
+          <div class="step-counter" id="stepCounter3">Step 1 of 2</div>
+          <h4 class="slide-title">Ecommerce Business - Data Analysis Overview</h4>
+          <p class="slide-desc">A full walkthrough of the e-commerce data analysis process, covering raw data collection, key metrics review and overall performance overview.</p>
         </div>
-        <div class="project-img">
-          <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/my_pic.png" class="slider-img" data-images='["https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/my_pic.png", "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/cookie_boat_cmp__anis(1).jpg"]' onclick="openLightbox(this)" alt="Server-Side GTM">
-          <button class="nav-btn prev-img-btn" aria-label="Previous Image" onclick="prevImage(event, this)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
-          <button class="nav-btn next-img-btn" aria-label="Next Image" onclick="nextImage(event, this)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-          </button>
+        
+        <div class="project-img" id="dataAnalyticsImgContainer3">
+          <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(1).jpg" class="slider-img" data-images='["https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(1).jpg","https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(2).jpg"]' onclick="openLightbox(this)" alt="Data Analytics Overview">
+          <span class="img-counter" style="position: absolute; bottom: 10px; right: 10px; background: #FFD54F; color: #101B35; padding: 4px 10px; border-radius: 12px; font-size: 13px; font-weight: 700; z-index: 5;">1 / 16</span>
         </div>
+
+        <button class="outer-nav-btn next-outer-btn" aria-label="Next Slide" onclick="nextSlide(event, this, 3)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
       </div>
     </details>
 
-    <!-- Project 5 -->
+    <!-- Project 5 (Data Analytics এর মতো) -->
     <details class="svc" name="proj">
       <summary><span class="num">05</span><span class="ttl">Google Ads Conversion Tracking</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
       <div class="svc-body">
+        
+        <button class="outer-nav-btn prev-outer-btn" aria-label="Previous Slide" onclick="prevSlide(event, this, 4)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+
         <div class="text-content">
-          <p>• Purchase Tracking</p>
-          <p>• Lead Tracking</p>
-          <p>• Conversion Setup</p>
-          <p>• Enhanced Conversions</p>
+          <div class="step-counter" id="stepCounter4">Step 1 of 2</div>
+          <h4 class="slide-title">Ecommerce Business - Data Analysis Overview</h4>
+          <p class="slide-desc">A full walkthrough of the e-commerce data analysis process, covering raw data collection, key metrics review and overall performance overview.</p>
         </div>
-        <div class="project-img">
-          <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/my_pic.png" class="slider-img" data-images='["https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/my_pic.png", "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/cookie_boat_cmp__anis(1).jpg"]' onclick="openLightbox(this)" alt="Google Ads Tracking">
-          <button class="nav-btn prev-img-btn" aria-label="Previous Image" onclick="prevImage(event, this)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
-          <button class="nav-btn next-img-btn" aria-label="Next Image" onclick="nextImage(event, this)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-          </button>
+        
+        <div class="project-img" id="dataAnalyticsImgContainer4">
+          <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(1).jpg" class="slider-img" data-images='["https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(1).jpg","https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(2).jpg"]' onclick="openLightbox(this)" alt="Data Analytics Overview">
+          <span class="img-counter" style="position: absolute; bottom: 10px; right: 10px; background: #FFD54F; color: #101B35; padding: 4px 10px; border-radius: 12px; font-size: 13px; font-weight: 700; z-index: 5;">1 / 16</span>
         </div>
+
+        <button class="outer-nav-btn next-outer-btn" aria-label="Next Slide" onclick="nextSlide(event, this, 4)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
       </div>
     </details>
 
-    <!-- Project 6 -->
+    <!-- 6 নম্বর প্রজেক্ট: Data Analytics & Decision (আসল) -->
     <details class="svc" name="proj">
-      <summary><span class="num">06</span><span class="ttl">Marketing Analytics & Reporting</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+      <summary><span class="num">06</span><span class="ttl">Data Analytics & Decision</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
       <div class="svc-body">
+        
+        <button class="outer-nav-btn prev-outer-btn" aria-label="Previous Slide" onclick="prevSlide(event, this, 5)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+
         <div class="text-content">
-          <p>• Looker Studio</p>
-          <p>• GA4 Reports</p>
-          <p>• ROAS & CPA Analysis</p>
-          <p>• Performance Dashboard</p>
+          <div class="step-counter" id="stepCounter5">Step 1 of 2</div>
+          <h4 class="slide-title">Ecommerce Business - Data Analysis Overview</h4>
+          <p class="slide-desc">A full walkthrough of the e-commerce data analysis process, covering raw data collection, key metrics review and overall performance overview.</p>
         </div>
-        <div class="project-img">
-          <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/my_pic.png" class="slider-img" data-images='["https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/my_pic.png", "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/cookie_boat_cmp__anis(1).jpg"]' onclick="openLightbox(this)" alt="Marketing Analytics">
-          <button class="nav-btn prev-img-btn" aria-label="Previous Image" onclick="prevImage(event, this)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
-          <button class="nav-btn next-img-btn" aria-label="Next Image" onclick="nextImage(event, this)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-          </button>
+        
+        <div class="project-img" id="dataAnalyticsImgContainer5">
+          <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(1).jpg" class="slider-img" data-images='[
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(1).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(2).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(3).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(4).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(5).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(6).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(7).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(8).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(9).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(10).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(11).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(12).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(13).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(14).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(15).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(16).jpg"
+          ]' onclick="openLightbox(this)" alt="Data Analytics Overview">
+          <span class="img-counter" style="position: absolute; bottom: 10px; right: 10px; background: #FFD54F; color: #101B35; padding: 4px 10px; border-radius: 12px; font-size: 13px; font-weight: 700; z-index: 5;">1 / 16</span>
         </div>
+
+        <button class="outer-nav-btn next-outer-btn" aria-label="Next Slide" onclick="nextSlide(event, this, 5)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
       </div>
     </details>
 
@@ -694,7 +895,26 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
       <div class="field"><label for="femail">Email <span class="req" aria-hidden="true">*</span></label><input id="femail" type="email" autocomplete="email" maxlength="120" required aria-required="true" aria-describedby="e-femail"><span class="err" id="e-femail">Please enter a valid email address.</span></div>
       <div class="field"><label for="fcountrybtn">Country <span class="req" aria-hidden="true">*</span></label><div class="cs" id="cs"><input type="hidden" id="fcountry" value=""><button type="button" class="cs-btn" id="fcountrybtn" aria-haspopup="listbox" aria-expanded="false" aria-controls="cslist" aria-describedby="e-fcountry"><span class="cs-label">Search your country</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.400" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="cs-panel" id="cspanel" hidden><input type="text" class="cs-search" id="cssearch" placeholder="Type to search..." aria-label="Search countries" autocomplete="off"><ul class="cs-list" id="cslist" role="listbox" aria-label="Countries"></ul></div></div><span class="err" id="e-fcountry">Please select your country.</span></div>
       <div class="field"><label for="fbtype">Business Type <span class="req" aria-hidden="true">*</span></label><select id="fbtype" required aria-required="true" aria-describedby="e-fbtype"><option value="" selected disabled>Select business type</option><option>E-commerce</option><option>Lead Generation</option><option>Services Oriented Business</option><option>Other</option></select><span class="err" id="e-fbtype">Please select your business type.</span></div>
-      <div class="field full"><label for="fservice">Service <span class="req" aria-hidden="true">*</span></label><select id="fservice" required aria-required="true" aria-describedby="e-fservice"><option value="" selected disabled>Select a service</option><option>Meta Ads</option><option>Conversion API</option><option>Website Tracking</option><option>Google Ads Conversion Tracking</option><option>Other</option></select><span class="err" id="e-fservice">Please select a service.</span></div>
+      
+      <div class="field"><label for="fwebsite">Your Website Link</label><input id="fwebsite" type="url" autocomplete="url" maxlength="200" placeholder="https://example.com"></div>
+
+      <div class="field">
+        <label>Services you need <span class="req" aria-hidden="true">*</span></label>
+        <div class="multi-select" id="multiServiceSelect">
+          <input type="hidden" id="fservice" required aria-required="true">
+          <button type="button" class="multi-select-btn" id="msBtn">Select one or more <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="multi-select-panel" id="msPanel">
+            <label class="multi-option"><input type="checkbox" value="Meta Ads"> Meta Ads</label>
+            <label class="multi-option"><input type="checkbox" value="GA4"> GA4</label>
+            <label class="multi-option"><input type="checkbox" value="Google Tag Manager"> Google Tag Manager</label>
+            <label class="multi-option"><input type="checkbox" value="Meta Pixel & CAPI"> Meta Pixel & CAPI</label>
+            <label class="multi-option"><input type="checkbox" value="CRO"> CRO</label>
+            <label class="multi-option"><input type="checkbox" value="Reporting"> Reporting</label>
+          </div>
+        </div>
+        <span class="err" id="e-fservice">Please select at least one service.</span>
+      </div>
+
       <div class="field full"><label for="fmessage">Message <span class="req" aria-hidden="true">*</span></label><textarea id="fmessage" maxlength="1500" required aria-required="true" aria-describedby="e-fmessage"></textarea><span class="err" id="e-fmessage">Please write your message.</span></div>
     </div>
     <div class="fsubmit"><button class="btn main" type="submit">Send Message</button><span id="fstatus" role="status" aria-live="polite"></span></div>
@@ -726,49 +946,38 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
 </footer>
 <a class="wa-float" href="https://wa.me/8801626868084" target="_blank" rel="noopener noreferrer" aria-label="Message me on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 21l1.600-4.600A8.500 8.500 0 1 1 8 19.600L3 21z"/><path d="M9.200 8.800c-.4.800-.2 2 1 3.400 1.200 1.400 2.600 2.100 3.500 1.900l.9-.9-1.800-1-.8.600c-.8-.4-1.500-1.100-1.900-1.900l.6-.8-1-1.800z" fill="currentColor" stroke="none"/></svg></a>
 
-<!-- Lightbox Modal -->
 <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
     <span class="close-lightbox" onclick="closeLightbox(event)">&times;</span>
+    <button class="lightbox-nav-btn lightbox-prev-btn" aria-label="Previous Image" onclick="lightboxPrev(event)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+
     <img id="lightbox-img" src="" alt="Enlarged Image">
+    
+    <button class="lightbox-nav-btn lightbox-next-btn" aria-label="Next Image" onclick="lightboxNext(event)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
 </div>
 
 <script>
-// ইমেজ স্লাইডার ফাংশন (পরবর্তী ছবি)
-function nextImage(e, btn) {
-    e.stopPropagation();
-    var img = btn.parentElement.querySelector('.slider-img');
-    var images = JSON.parse(img.getAttribute('data-images'));
-    var currentSrc = img.src;
-    var currentIndex = images.findIndex(function(url) { return currentSrc.includes(url) || url.includes(currentSrc); });
-    if (currentIndex === -1) currentIndex = 0;
-    var nextIndex = (currentIndex + 1) % images.length;
-    img.style.opacity = '0';
-    setTimeout(function() { img.src = images[nextIndex]; img.style.opacity = '1'; }, 200);
-}
+// গ্লোবাল ভ্যারিয়েবল
+var hoverStates = {}; // মাউস হোভার ট্র্যাক করার জন্য
 
-// ইমেজ স্লাইডার ফাংশন (আগের ছবি)
-function prevImage(e, btn) {
-    e.stopPropagation();
-    var img = btn.parentElement.querySelector('.slider-img');
-    var images = JSON.parse(img.getAttribute('data-images'));
-    var currentSrc = img.src;
-    var currentIndex = images.findIndex(function(url) { return currentSrc.includes(url) || url.includes(currentSrc); });
-    if (currentIndex === -1) currentIndex = 0;
-    var prevIndex = (currentIndex - 1 + images.length) % images.length;
-    img.style.opacity = '0';
-    setTimeout(function() { img.src = images[prevIndex]; img.style.opacity = '1'; }, 200);
-}
+// --- লাইটবক্স লজিক ---
+var currentLightboxImages = [];
+var currentLightboxIndex = 0;
 
-// লাইটবক্স ওপেন করা
 function openLightbox(img) {
     var lightbox = document.getElementById('lightbox');
     var lightboxImg = document.getElementById('lightbox-img');
-    lightboxImg.src = img.src;
+    currentLightboxImages = JSON.parse(img.getAttribute('data-images'));
+    currentLightboxIndex = currentLightboxImages.findIndex(function(url) { return img.src.includes(url) || url.includes(img.src); });
+    if (currentLightboxIndex === -1) currentLightboxIndex = 0;
+    lightboxImg.src = currentLightboxImages[currentLightboxIndex];
     lightbox.style.display = 'flex';
     setTimeout(function() { lightbox.classList.add('active'); }, 10);
 }
 
-// লাইটবক্স ক্লোজ করা
 function closeLightbox(e) {
     if (e) e.stopPropagation();
     var lightbox = document.getElementById('lightbox');
@@ -776,10 +985,74 @@ function closeLightbox(e) {
     setTimeout(function() { lightbox.style.display = 'none'; }, 300);
 }
 
-// লাইটবক্সের ভেতরে ছবির বাইরে ক্লিক করলে বন্ধ হবে
+function lightboxNext(e) {
+    e.stopPropagation();
+    if (!currentLightboxImages.length) return;
+    currentLightboxIndex = (currentLightboxIndex + 1) % currentLightboxImages.length;
+    document.getElementById('lightbox-img').src = currentLightboxImages[currentLightboxIndex];
+}
+
+function lightboxPrev(e) {
+    e.stopPropagation();
+    if (!currentLightboxImages.length) return;
+    currentLightboxIndex = (currentLightboxIndex - 1 + currentLightboxImages.length) % currentLightboxImages.length;
+    document.getElementById('lightbox-img').src = currentLightboxImages[currentLightboxIndex];
+}
+
 document.getElementById('lightbox').addEventListener('click', function(e) {
     if (e.target === this) { closeLightbox(e); }
 });
+
+document.addEventListener('keydown', function(e) {
+    var lightbox = document.getElementById('lightbox');
+    if (lightbox.classList.contains('active')) {
+        if (e.key === 'Escape') closeLightbox(e);
+        if (e.key === 'ArrowRight') lightboxNext(e);
+        if (e.key === 'ArrowLeft') lightboxPrev(e);
+    }
+});
+
+// --- মাল্টি সিলেক্ট ড্রপডাউন লজিক ---
+document.addEventListener('DOMContentLoaded', function() {
+    var msBtn = document.getElementById('msBtn');
+    var msPanel = document.getElementById('msPanel');
+    var checkboxes = msPanel.querySelectorAll('input[type="checkbox"]');
+    var hiddenInput = document.getElementById('fservice');
+
+    msBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        msPanel.classList.toggle('open');
+        msBtn.classList.toggle('open');
+    });
+
+    document.addEventListener('click', function(e) {
+        if (!msPanel.contains(e.target) && !msBtn.contains(e.target)) {
+            msPanel.classList.remove('open');
+            msBtn.classList.remove('open');
+        }
+    });
+
+    function updateBtnText() {
+        var selected = [];
+        checkboxes.forEach(function(cb) {
+            if (cb.checked) selected.push(cb.value);
+        });
+        if (selected.length > 0) {
+            msBtn.innerHTML = selected.join(', ') + ' <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
+            msBtn.classList.add('has-val');
+            hiddenInput.value = selected.join(', ');
+        } else {
+            msBtn.innerHTML = 'Select one or more <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
+            msBtn.classList.remove('has-val');
+            hiddenInput.value = '';
+        }
+    }
+
+    checkboxes.forEach(function(cb) {
+        cb.addEventListener('change', updateBtnText);
+    });
+});
+
 
 (function(){
 var f=document.getElementById('cf');if(!f)return;
@@ -806,7 +1079,7 @@ cq.addEventListener('keydown',function(e){
   else if(e.key==='Tab'){closeP(false);}
 });
 document.addEventListener('click',function(e){if(!cp.hidden&&!e.target.closest('#cs'))closeP(false);});
-var fields=Array.prototype.filter.call(f.querySelectorAll('input,select,textarea'),function(el){return !el.classList.contains('cs-search');});
+var fields=Array.prototype.filter.call(f.querySelectorAll('input,select,textarea'),function(el){return !el.classList.contains('cs-search') && el.type !== 'checkbox';});
 function check(el){var v=(el.value||'').trim();if(el.id==='fcountry'){var m=countries.filter(function(c){return c.toLowerCase()===v.toLowerCase();})[0];if(m){el.value=m;v=m;}}var ok=v!==''&&(el.type!=='email'||el.checkValidity())&&(el.id!=='fcountry'||countries.indexOf(v)>-1);el.closest('.field').classList.toggle('bad',!ok);el.setAttribute('aria-invalid',ok?'false':'true');return ok;}
 fields.forEach(function(el){
   el.addEventListener('blur',function(){check(el);});
@@ -818,7 +1091,7 @@ f.addEventListener('submit',function(e){
   fields.forEach(function(el){if(!check(el)){all=false;if(!first)first=el;}});
   if(!all){st.className='bad';st.textContent='Please fill in all required fields.';(first.id==='fcountry'?cb:first).focus();return;}
   var v=function(id){return document.getElementById(id).value.trim();};
-  var text='Hello Anisur, I’d like to get in touch.\n\nName: '+v('fname')+'\nEmail: '+v('femail')+'\nCountry: '+v('fcountry')+'\nBusiness type: '+v('fbtype')+'\nService: '+v('fservice')+'\nMessage: '+v('fmessage');
+  var text='Hello Anisur, I’d like to get in touch.\n\nName: '+v('fname')+'\nEmail: '+v('femail')+'\nCountry: '+v('fcountry')+'\nBusiness type: '+v('fbtype')+'\nWebsite: '+v('fwebsite')+'\nService: '+v('fservice')+'\nMessage: '+v('fmessage');
   var url='https://wa.me/8801626868084?text='+encodeURIComponent(text);
   window.open(url,'_blank','noopener');
   var link=document.getElementById('tlink');link.href=url;
@@ -832,6 +1105,196 @@ document.getElementById('tagain').addEventListener('click',function(){
   document.getElementById('fthanks').hidden=true;f.hidden=false;document.getElementById('fname').focus();
 });
 })();
+
+// --- সব প্রজেক্টের জন্য অটোমেটিক স্লাইডার এবং মাউস রাখলে থেমে যাওয়ার (Pause on Hover) লজিক ---
+
+// প্রতিটি কন্টেইনারের জন্য ডেটা (১-৫ এবং ৬ নম্বর)
+// ১-৫ এর জন্য আমরা ২টি করে ডামি ছবি দিয়েছি (যাতে দ্রুত লোড হয়), ৬ নম্বরে ১৬টি
+var allProjectSlides = [
+    // Project 1
+    {
+        title: "Ecommerce Business - Data Analysis Overview",
+        desc: "A full walkthrough of the e-commerce data analysis process, covering raw data collection, key metrics review and overall performance overview.",
+        images: [
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(1).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(2).jpg"
+        ]
+    },
+    // Project 2
+    {
+        title: "Ecommerce Business - Data Analysis Overview",
+        desc: "A full walkthrough of the e-commerce data analysis process, covering raw data collection, key metrics review and overall performance overview.",
+        images: [
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(1).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(2).jpg"
+        ]
+    },
+    // Project 3
+    {
+        title: "Ecommerce Business - Data Analysis Overview",
+        desc: "A full walkthrough of the e-commerce data analysis process, covering raw data collection, key metrics review and overall performance overview.",
+        images: [
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(1).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(2).jpg"
+        ]
+    },
+    // Project 4
+    {
+        title: "Ecommerce Business - Data Analysis Overview",
+        desc: "A full walkthrough of the e-commerce data analysis process, covering raw data collection, key metrics review and overall performance overview.",
+        images: [
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(1).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(2).jpg"
+        ]
+    },
+    // Project 5
+    {
+        title: "Ecommerce Business - Data Analysis Overview",
+        desc: "A full walkthrough of the e-commerce data analysis process, covering raw data collection, key metrics review and overall performance overview.",
+        images: [
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(1).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(2).jpg"
+        ]
+    },
+    // Project 6 (আসল)
+    {
+        title: "Ecommerce Business - Data Analysis Overview",
+        desc: "A full walkthrough of the e-commerce data analysis process, covering raw data collection, key metrics review and overall performance overview.",
+        images: [
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(1).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(2).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(3).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(4).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(5).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(6).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(7).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(8).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(9).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(10).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(11).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(12).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(13).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(14).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(15).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(16).jpg"
+        ]
+    },
+    {
+        title: "Ecommerce Business - Problem Find & Take Decision",
+        desc: "Identifying performance problems and drop-offs in the e-commerce data, then turning those findings into clear, actionable decisions.",
+        images: [
+           "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_decison_anis(1).jpg",
+          "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_decison_anis(2).jpg",
+          "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_decison_anis(3).jpg",
+          "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_decison_anis(4).jpg",
+          "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_decison_anis(5).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_decison_anis(6).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_decison_anis(7).jpg",
+             "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_decison_anis(8).jpg",
+             "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_decison_anis(9).jpg",
+             "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_decison_anis(10).jpg",
+             "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_decison_anis(11).jpg",
+             "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_decison_anis(12).jpg",
+             "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_decison_anis(13).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_decison_anis(14).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_decison_anis(15).jpg"
+        ]
+    }
+];
+
+// গ্লোবাল ভ্যারিয়েবল যা প্রতিটি প্রজেক্টের ইনডেক্স ট্র্যাক করবে
+var projectIndices = [0, 0, 0, 0, 0, 0];
+var imageIndices = [0, 0, 0, 0, 0, 0];
+var hoverStates = [false, false, false, false, false, false];
+var autoPlayIntervals = [];
+
+// UI আপডেট করার ফাংশন
+function updateProjectUI(projIndex) {
+    var container = document.getElementById('dataAnalyticsImgContainer' + projIndex);
+    if(!container) return;
+    
+    var currentProjIndex = projectIndices[projIndex];
+    var slide = allProjectSlides[currentProjIndex];
+    // যদি projIndex ০-৪ হয়, তবে allProjectSlides এর প্রথম ৫টি অবজেক্ট, অন্যথায় ৫ ও ৬ নম্বর
+    if(projIndex < 5) {
+        slide = allProjectSlides[projIndex];
+    } else {
+        slide = allProjectSlides[5 + (projectIndices[projIndex] % 2)];
+    }
+
+    var titleEl = container.closest('.svc-body').querySelector('.slide-title');
+    var descEl = container.closest('.svc-body').querySelector('.slide-desc');
+    var imgElement = container.querySelector('.slider-img');
+    var counter = container.querySelector('.img-counter');
+    var stepCounter = container.closest('.svc-body').querySelector('.step-counter');
+
+    // টেক্সট আপডেট
+    titleEl.textContent = slide.title;
+    descEl.textContent = slide.desc;
+    
+    // Step কাউন্টার আপডেট
+    if(stepCounter) {
+        stepCounter.textContent = "Step " + (projectIndices[projIndex] + 1) + " of 2";
+    }
+
+    // ছবি আপডেট
+    var safeSrc = encodeURI(slide.images[imageIndices[projIndex]]);
+    imgElement.src = safeSrc; 
+    imgElement.setAttribute('data-images', JSON.stringify(slide.images)); 
+    
+    // ইমেজ কাউন্টার আপডেট
+    if(counter) {
+        counter.textContent = (imageIndices[projIndex] + 1) + " / " + slide.images.length;
+    }
+}
+
+// অটো প্লে শুরু করার ফাংশন
+function startProjectAutoPlay(projIndex) {
+    clearInterval(autoPlayIntervals[projIndex]);
+    autoPlayIntervals[projIndex] = setInterval(function() {
+        if (!hoverStates[projIndex]) {
+            var slide = (projIndex < 5) ? allProjectSlides[projIndex] : allProjectSlides[5 + (projectIndices[projIndex] % 2)];
+            imageIndices[projIndex]++;
+            if (imageIndices[projIndex] >= slide.images.length) {
+                imageIndices[projIndex] = 0; 
+            }
+            updateProjectUI(projIndex);
+        }
+    }, 2500); // ২.৫ সেকেন্ড পর পর ছবি পরিবর্তন হবে
+}
+
+// মাউস হোভার ইভেন্ট এবং অটোপ্লে শুরু
+document.addEventListener('DOMContentLoaded', function() {
+    for(var i = 0; i < 6; i++) {
+        var imgContainer = document.getElementById('dataAnalyticsImgContainer' + i);
+        if(imgContainer) {
+            (function(index) {
+                imgContainer.addEventListener('mouseenter', function() {
+                    hoverStates[index] = true;
+                });
+                imgContainer.addEventListener('mouseleave', function() {
+                    hoverStates[index] = false;
+                });
+            })(i);
+            startProjectAutoPlay(i);
+        }
+    }
+});
+
+// অ্যারো ক্লিক করলে (Slide পরিবর্তন)
+function nextSlide(e, btn, projIndex) {
+    e.preventDefault();
+    projectIndices[projIndex] = (projectIndices[projIndex] + 1) % 2; // ২টি স্লাইডের জন্য
+    imageIndices[projIndex] = 0; 
+    updateProjectUI(projIndex);
+}
+
+function prevSlide(e, btn, projIndex) {
+    e.preventDefault();
+    projectIndices[projIndex] = (projectIndices[projIndex] - 1 + 2) % 2;
+    imageIndices[projIndex] = 0; 
+    updateProjectUI(projIndex);
+}
 </script>
 </body>
 </html>
