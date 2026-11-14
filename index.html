@@ -701,7 +701,34 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
     <details class="svc" name="proj">
       <summary><span class="num">01</span><span class="ttl">Meta Ads Campaign Management</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
       <div class="svc-body">
-        <div class="empty-state" style="color: #CBD5E1; font-style: italic; padding: 20px;">No content added yet.</div>
+        
+        <button class="outer-nav-btn prev-outer-btn" aria-label="Previous Slide" onclick="prevSlide(event, this, 0)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+
+        <div class="text-content">
+          <div class="step-counter" id="stepCounter0">Campaign type 1 of 2</div>
+          <h4 class="slide-title">E-commerce Meta Ads Campaign – Case Study</h4>
+          <p class="slide-desc">Successfully generated 183 website purchases for an e-commerce business through Meta Ads campaigns.<br><br>
+            📊 Campaign Results:<br>
+            ✅ 183 Website Purchases<br>
+            ✅ $231.98 Total Ad Spend<br>
+            ✅ $1.27 Cost Per Purchase<br>
+            ✅ 237,043 Accounts Reached<br>
+            ✅ 1.26 Average Frequency
+          </p>
+        </div>
+        
+        <div class="project-img" id="dataAnalyticsImgContainer0">
+          <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_ads_eco_anis_1.jpg" class="slider-img" data-images='[
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_ads_ecom_anis_1.jpg"
+          ]' onclick="openLightbox(this)" alt="E-commerce Meta Ads Campaign">
+          <span class="img-counter" style="position: absolute; bottom: 10px; right: 10px; background: #FFD54F; color: #101B35; padding: 4px 10px; border-radius: 12px; font-size: 13px; font-weight: 700; z-index: 5;">1 / 1</span>
+        </div>
+
+        <button class="outer-nav-btn next-outer-btn" aria-label="Next Slide" onclick="nextSlide(event, this, 0)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
       </div>
     </details>
 
@@ -1056,6 +1083,24 @@ document.getElementById('tagain').addEventListener('click',function(){
 
 // --- সব প্রজেক্টের জন্য অটোমেটিক স্লাইডার এবং মাউস রাখলে থেমে যাওয়ার (Pause on Hover) লজিক ---
 
+// Project 1 এর Step 1 (E-commerce) এবং Step 2 (Dental Clinic)
+var project1Slides = [
+    {
+        title: "E-commerce Meta Ads Campaign – Case Study",
+        desc: "Successfully generated 183 website purchases for an e-commerce business through Meta Ads campaigns.<br><br>📊 Campaign Results:<br>✅ 183 Website Purchases<br>✅ $231.98 Total Ad Spend<br>✅ $1.27 Cost Per Purchase<br>✅ 237,043 Accounts Reached<br>✅ 1.26 Average Frequency",
+        images: [
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_ads_ecom_anis_1.jpg"
+        ]
+    },
+    {
+        title: "Dental Clinic Lead Generation Campaign – Case Study",
+        desc: "Successfully generated 420 leads for a dental clinic through Meta Ads campaigns.<br><br>📊 Campaign Results:<br>✅ 72,000+ Reach<br>✅ 148,000+ Impressions<br>✅ 4,800+ Link Clicks<br>✅ 420+ Qualified Leads<br>✅ 3.2% CTR<br>✅ Approx. $2.38 Cost Per Lead (CPL)",
+        images: [
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_ads_dental_lead_anis_1.jpg"
+        ]
+    }
+];
+
 // Project 3 এর Step 1 ও Step 2 এর ডেটা
 var project3Slides = [
     {
@@ -1186,8 +1231,13 @@ function updateProjectUI(projIndex) {
     var slide;
     var maxSlides = 1;
     
+    // Project 1 (index 0)
+    if (projIndex === 0) {
+        slide = project1Slides[projectIndices[projIndex]];
+        maxSlides = project1Slides.length;
+    }
     // Project 3 (index 2)
-    if (projIndex === 2) {
+    else if (projIndex === 2) {
         slide = project3Slides[projectIndices[projIndex]];
         maxSlides = project3Slides.length;
     } 
@@ -1214,11 +1264,13 @@ function updateProjectUI(projIndex) {
 
     // টেক্সট আপডেট
     titleEl.textContent = slide.title;
-    descEl.textContent = slide.desc;
+    descEl.innerHTML = slide.desc; // Changed to innerHTML to support <br>
     
     // Step কাউন্টার আপডেট
     if(stepCounter) {
-        if (projIndex === 2) {
+        if (projIndex === 0) {
+             stepCounter.textContent = "Campaign type " + (projectIndices[projIndex] + 1) + " of 2";
+        } else if (projIndex === 2) {
              stepCounter.textContent = "Tracking type " + (projectIndices[projIndex] + 1) + " of 2";
         } else if (projIndex === 3) {
              stepCounter.textContent = "Tracking type " + (projectIndices[projIndex] + 1) + " of 4";
@@ -1248,7 +1300,9 @@ function startProjectAutoPlay(projIndex) {
     autoPlayIntervals[projIndex] = setInterval(function() {
         if (!hoverStates[projIndex]) {
             var slide;
-            if (projIndex === 2) {
+            if (projIndex === 0) {
+                slide = project1Slides[projectIndices[projIndex]];
+            } else if (projIndex === 2) {
                 slide = project3Slides[projectIndices[projIndex]];
             } else if (projIndex === 3) {
                 slide = project4Slides[projectIndices[projIndex]];
@@ -1290,8 +1344,14 @@ document.addEventListener('DOMContentLoaded', function() {
 // অ্যারো ক্লিক করলে (Slide পরিবর্তন)
 function nextSlide(e, btn, projIndex) {
     e.preventDefault();
+    // Project 1 এর ক্ষেত্রে ২টি স্লাইডের মধ্যে ঘোরাফেরা করবে
+    if (projIndex === 0) {
+        projectIndices[projIndex] = (projectIndices[projIndex] + 1) % 2;
+        imageIndices[projIndex] = 0; 
+        updateProjectUI(projIndex);
+    }
     // Project 3 এর ক্ষেত্রে ২টি স্লাইডের মধ্যে ঘোরাফেরা করবে
-    if (projIndex === 2) {
+    else if (projIndex === 2) {
         projectIndices[projIndex] = (projectIndices[projIndex] + 1) % 2;
         imageIndices[projIndex] = 0; 
         updateProjectUI(projIndex);
@@ -1312,7 +1372,11 @@ function nextSlide(e, btn, projIndex) {
 
 function prevSlide(e, btn, projIndex) {
     e.preventDefault();
-    if (projIndex === 2) {
+    if (projIndex === 0) {
+        projectIndices[projIndex] = (projectIndices[projIndex] - 1 + 2) % 2;
+        imageIndices[projIndex] = 0; 
+        updateProjectUI(projIndex);
+    } else if (projIndex === 2) {
         projectIndices[projIndex] = (projectIndices[projIndex] - 1 + 2) % 2;
         imageIndices[projIndex] = 0; 
         updateProjectUI(projIndex);
