@@ -8,13 +8,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#FFFFFF;--panel:#F4F7FB;--ink:#101B35;--head:#101B35;--body:#334155;--muted:#334155;--line:#DCE4EE;--signal:#2878FF;--hot:#2878FF;--on-signal:#FFFFFF;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{--bg:#FFFFFF;--panel:#F4F7FB;--ink:#101B35;--head:#101B35;--body:#334155;--muted:#334155;--line:#DCE4EE;--signal:#2878FF;--hot:#2878FF;--on-signal:#FFFFFF}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0C1426;--panel:#151F3A;--ink:#FFFFFF;--head:#FFFFFF;--body:#CBD5E1;--muted:#AAB8CC;--line:#26365A;--signal:#2878FF;--hot:#5C9BFF;--on-signal:#FFFFFF}}
 :root[data-theme="dark"]{--bg:#0C1426;--panel:#151F3A;--ink:#FFFFFF;--head:#FFFFFF;--body:#CBD5E1;--muted:#AAB8CC;--line:#26365A;--signal:#2878FF;--hot:#5C9BFF;--on-signal:#FFFFFF}
 html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
 *,*::before,*::after{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--body);font:400 17px/1.65 "Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
+body{margin:0;background:var(--bg);color:var(--body);font:400 17px/1.65 "Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 h1,h2,h3{font-family:"Familjen Grotesk","Helvetica Neue",Arial,sans-serif;line-height:1.1;margin:0}
 a{color:var(--signal)}
 a:focus-visible,button:focus-visible{outline:3px solid var(--hot);outline-offset:3px}
@@ -96,9 +95,8 @@ section .sub{max-width:none}
 .wa-float:hover{filter:brightness(.96);animation-play-state:paused}
 @keyframes waPulse{0%{box-shadow:0 0 0 0 rgba(255,196,0,.55),0 0 0 0 rgba(255,196,0,.35)}100%{box-shadow:0 0 0 26px rgba(255,196,0,0),0 0 0 48px rgba(255,196,0,0)}}
 @media (prefers-reduced-motion:reduce){.wa-float{animation:none;box-shadow:0 6px 18px rgba(16,27,53,.3)}}
-:root{padding-top:0}
 html{scroll-padding-top:76px}
-header.site{position:sticky;top:0;z-index:40;background:rgba(16,27,53,.96);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid #243457;padding-top:env(safe-area-inset-top,0px)}
+header.site{position:sticky;top:0;z-index:40;background:rgba(16,27,53,.96);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid #243457}
 header.site .navbar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;min-height:64px}
 header.site .navbar::after{content:""}
 
@@ -428,7 +426,7 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
 .steps li::before{content:counter(s);font:700 26px "Familjen Grotesk",sans-serif;color:var(--hot)}
 .steps h3{font-size:20px;margin-bottom:4px}
 .steps p{margin:0;color:var(--muted);font-size:15.5px}
-.wa-float{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(16,27,53,.35);z-index:50;text-decoration:none}
+.wa-float{position:fixed;right:18px;bottom:18px;width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(16,27,53,.35);z-index:50;text-decoration:none}
 .wa-float svg{width:32px;height:32px}
 .wa-float:hover{filter:brightness(.95)}
 .wa-float:focus-visible{outline:3px solid var(--signal);outline-offset:3px}
@@ -736,7 +734,35 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
     <details class="svc" name="proj">
       <summary><span class="num">02</span><span class="ttl">Meta Pixel & Conversions API Setup</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
       <div class="svc-body">
-        <div class="empty-state" style="color: #CBD5E1; font-style: italic; padding: 20px;">No content added yet.</div>
+        
+        <button class="outer-nav-btn prev-outer-btn" aria-label="Previous Slide" onclick="prevSlide(event, this, 1)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+
+        <div class="text-content">
+          <div class="step-counter" id="stepCounter1">Tracking type 1 of 2</div>
+          <h4 class="slide-title">Meta Pixel Browser-Side Tracking</h4>
+          <p class="slide-desc">Implemented Meta Pixel using GTM to track key website activities and send conversion data to Meta for better ad tracking and optimization.</p>
+        </div>
+        
+        <div class="project-img" id="dataAnalyticsImgContainer1">
+          <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_bs(1).jpg" class="slider-img" data-images='[
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_bs(1).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_bs(2).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_bs(3).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_bs(4).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_bs(5).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_bs(6).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_bs(7).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_bs(8).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_bs(9).jpg"
+          ]' onclick="openLightbox(this)" alt="Meta Pixel Browser-Side Tracking">
+          <span class="img-counter" style="position: absolute; bottom: 10px; right: 10px; background: #FFD54F; color: #101B35; padding: 4px 10px; border-radius: 12px; font-size: 13px; font-weight: 700; z-index: 5;">1 / 9</span>
+        </div>
+
+        <button class="outer-nav-btn next-outer-btn" aria-label="Next Slide" onclick="nextSlide(event, this, 1)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
       </div>
     </details>
 
@@ -969,7 +995,8 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
 
 <script>
 // গ্লোবাল ভ্যারিয়েবল
-var hoverStates = {}; // মাউস হোভার ট্র্যাক করার জন্য
+var hoverStates = [false, false, false, false, false, false];
+var autoPlayIntervals = [];
 
 // --- লাইটবক্স লজিক ---
 var currentLightboxImages = [];
@@ -1134,6 +1161,42 @@ var project1Slides = [
     }
 ];
 
+// Project 2 এর Step 1 (Browser-Side) এবং Step 2 (Server-Side)
+var project2Slides = [
+    {
+        title: "Meta Pixel Browser-Side Tracking",
+        desc: "Implemented Meta Pixel using GTM to track key website activities and send conversion data to Meta for better ad tracking and optimization.",
+        images: [
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_bs(1).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_bs(2).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_bs(3).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_bs(4).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_bs(5).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_bs(6).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_bs(7).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_bs(8).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_bs(9).jpg"
+        ]
+    },
+    {
+        title: "Meta Pixel Server-Side Tracking",
+        desc: "Implemented Meta Conversion API using server-side GTM to send conversion events directly to Meta for more reliable tracking and better ad optimization.",
+        images: [
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_ss(1).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_ss(2).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_ss(3).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_ss(4).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_ss(5).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_ss(6).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_ss(7).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_ss(8).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_ss(9).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_ss(10).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_ss(11).jpg"
+        ]
+    }
+];
+
 // Project 3 এর Step 1 ও Step 2 এর ডেটা
 var project3Slides = [
     {
@@ -1270,8 +1333,6 @@ var emptySlides = [
 // গ্লোবাল ভ্যারিয়েবল
 var projectIndices = [0, 0, 0, 0, 0, 0];
 var imageIndices = [0, 0, 0, 0, 0, 0];
-var hoverStates = [false, false, false, false, false, false];
-var autoPlayIntervals = [];
 
 // UI আপডেট করার ফাংশন
 function updateProjectUI(projIndex) {
@@ -1285,6 +1346,11 @@ function updateProjectUI(projIndex) {
     if (projIndex === 0) {
         slide = project1Slides[projectIndices[projIndex]];
         maxSlides = project1Slides.length;
+    }
+    // Project 2 (index 1)
+    else if (projIndex === 1) {
+        slide = project2Slides[projectIndices[projIndex]];
+        maxSlides = project2Slides.length;
     }
     // Project 3 (index 2)
     else if (projIndex === 2) {
@@ -1325,6 +1391,8 @@ function updateProjectUI(projIndex) {
     if(stepCounter) {
         if (projIndex === 0) {
              stepCounter.textContent = "Campaign type " + (projectIndices[projIndex] + 1) + " of 2";
+        } else if (projIndex === 1) {
+             stepCounter.textContent = "Tracking type " + (projectIndices[projIndex] + 1) + " of 2";
         } else if (projIndex === 2) {
              stepCounter.textContent = "Tracking type " + (projectIndices[projIndex] + 1) + " of 2";
         } else if (projIndex === 3) {
@@ -1359,6 +1427,8 @@ function startProjectAutoPlay(projIndex) {
             var slide;
             if (projIndex === 0) {
                 slide = project1Slides[projectIndices[projIndex]];
+            } else if (projIndex === 1) {
+                slide = project2Slides[projectIndices[projIndex]];
             } else if (projIndex === 2) {
                 slide = project3Slides[projectIndices[projIndex]];
             } else if (projIndex === 3) {
@@ -1403,25 +1473,31 @@ document.addEventListener('DOMContentLoaded', function() {
 // অ্যারো ক্লিক করলে (Slide পরিবর্তন)
 function nextSlide(e, btn, projIndex) {
     e.preventDefault();
-    // Project 1 এর ক্ষেত্রে ২টি স্লাইডের মধ্যে ঘোরাফেরা করবে
+    // Project 1
     if (projIndex === 0) {
         projectIndices[projIndex] = (projectIndices[projIndex] + 1) % 2;
         imageIndices[projIndex] = 0; 
         updateProjectUI(projIndex);
     }
-    // Project 3 এর ক্ষেত্রে ২টি স্লাইডের মধ্যে ঘোরাফেরা করবে
+    // Project 2
+    else if (projIndex === 1) {
+        projectIndices[projIndex] = (projectIndices[projIndex] + 1) % 2;
+        imageIndices[projIndex] = 0; 
+        updateProjectUI(projIndex);
+    }
+    // Project 3
     else if (projIndex === 2) {
         projectIndices[projIndex] = (projectIndices[projIndex] + 1) % 2;
         imageIndices[projIndex] = 0; 
         updateProjectUI(projIndex);
     } 
-    // Project 4 এর ক্ষেত্রে ৪টি স্লাইডের মধ্যে ঘোরাফেরা করবে
+    // Project 4
     else if (projIndex === 3) {
         projectIndices[projIndex] = (projectIndices[projIndex] + 1) % 4;
         imageIndices[projIndex] = 0; 
         updateProjectUI(projIndex);
     }
-    // Project 5 এর ক্ষেত্রে ২টি স্লাইডের মধ্যে ঘোরাফেরা করবে
+    // Project 5
     else if (projIndex === 4) {
         projectIndices[projIndex] = (projectIndices[projIndex] + 1) % 2;
         imageIndices[projIndex] = 0; 
@@ -1435,7 +1511,13 @@ function prevSlide(e, btn, projIndex) {
         projectIndices[projIndex] = (projectIndices[projIndex] - 1 + 2) % 2;
         imageIndices[projIndex] = 0; 
         updateProjectUI(projIndex);
-    } else if (projIndex === 2) {
+    } 
+    else if (projIndex === 1) {
+        projectIndices[projIndex] = (projectIndices[projIndex] - 1 + 2) % 2;
+        imageIndices[projIndex] = 0; 
+        updateProjectUI(projIndex);
+    } 
+    else if (projIndex === 2) {
         projectIndices[projIndex] = (projectIndices[projIndex] - 1 + 2) % 2;
         imageIndices[projIndex] = 0; 
         updateProjectUI(projIndex);
