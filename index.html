@@ -845,6 +845,39 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
       </div>
     </details>
 
+    <!-- Project 6 (TikTok Tracking Setup) -->
+    <details class="svc" name="proj">
+      <summary><span class="num">06</span><span class="ttl">TikTok Tracking Setup</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+      <div class="svc-body">
+        
+        <div class="text-content">
+          <div class="step-counter">Tracking type 1 of 1</div>
+          <h4 class="slide-title">TikTok Tracking Implementation</h4>
+          <p class="slide-desc">Successfully implemented tracking for an e-commerce brand.<br><br>
+            <strong>Tracking Implementations:</strong><br>
+            ✅ Meta Pixel + CAPI<br>
+            ✅ TikTok Pixel + Events API<br>
+            ✅ Server-Side Tracking<br>
+            ✅ GA4 Ecommerce Tracking
+          </p>
+        </div>
+        
+        <div class="project-img" id="dataAnalyticsImgContainer5">
+          <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/tiktok_tracking(1).jpg" class="slider-img" data-images='[
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/tiktok_tracking(1).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/tiktok_tracking(2).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/tiktok_tracking(3).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/tiktok_tracking(4).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/tiktok_tracking(5).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/tiktok_tracking(6).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/tiktok_tracking(7).jpg"
+          ]' onclick="openLightbox(this)" alt="TikTok Tracking Setup">
+          <span class="img-counter" style="position: absolute; bottom: 10px; right: 10px; background: #FFD54F; color: #101B35; padding: 4px 10px; border-radius: 12px; font-size: 13px; font-weight: 700; z-index: 5;">1 / 7</span>
+        </div>
+
+      </div>
+    </details>
+
   </div>
 </section>
 
@@ -1210,6 +1243,23 @@ var project5Slides = [
     }
 ];
 
+// Project 6 এর Step 1 (TikTok Tracking)
+var project6Slides = [
+    {
+        title: "TikTok Tracking Implementation",
+        desc: "Successfully implemented tracking for an e-commerce brand.<br><br><strong>Tracking Implementations:</strong><br>✅ Meta Pixel + CAPI<br>✅ TikTok Pixel + Events API<br>✅ Server-Side Tracking<br>✅ GA4 Ecommerce Tracking",
+        images: [
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/tiktok_tracking(1).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/tiktok_tracking(2).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/tiktok_tracking(3).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/tiktok_tracking(4).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/tiktok_tracking(5).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/tiktok_tracking(6).jpg",
+            "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/tiktok_tracking(7).jpg"
+        ]
+    }
+];
+
 // অন্যান্য প্রজেক্টের জন্য ডামি ডেটা (খালি)
 var emptySlides = [
     { title: "", desc: "", images: [] },
@@ -1218,9 +1268,9 @@ var emptySlides = [
 ];
 
 // গ্লোবাল ভ্যারিয়েবল
-var projectIndices = [0, 0, 0, 0, 0];
-var imageIndices = [0, 0, 0, 0, 0];
-var hoverStates = [false, false, false, false, false];
+var projectIndices = [0, 0, 0, 0, 0, 0];
+var imageIndices = [0, 0, 0, 0, 0, 0];
+var hoverStates = [false, false, false, false, false, false];
 var autoPlayIntervals = [];
 
 // UI আপডেট করার ফাংশন
@@ -1251,6 +1301,11 @@ function updateProjectUI(projIndex) {
         slide = project5Slides[projectIndices[projIndex]];
         maxSlides = project5Slides.length;
     } 
+    // Project 6 (index 5)
+    else if (projIndex === 5) {
+        slide = project6Slides[0]; // Only one slide
+        maxSlides = 1;
+    }
     // অন্যান্য
     else {
         slide = emptySlides[projectIndices[projIndex] % emptySlides.length];
@@ -1264,7 +1319,7 @@ function updateProjectUI(projIndex) {
 
     // টেক্সট আপডেট
     titleEl.textContent = slide.title;
-    descEl.innerHTML = slide.desc; // Changed to innerHTML to support <br>
+    descEl.innerHTML = slide.desc; 
     
     // Step কাউন্টার আপডেট
     if(stepCounter) {
@@ -1276,6 +1331,8 @@ function updateProjectUI(projIndex) {
              stepCounter.textContent = "Tracking type " + (projectIndices[projIndex] + 1) + " of 4";
         } else if (projIndex === 4) {
              stepCounter.textContent = "Tracking type " + (projectIndices[projIndex] + 1) + " of 2";
+        } else if (projIndex === 5) {
+             stepCounter.textContent = "Tracking type 1 of 1";
         } else {
              stepCounter.textContent = "Tracking type " + (projectIndices[projIndex] + 1) + " of " + maxSlides;
         }
@@ -1308,6 +1365,8 @@ function startProjectAutoPlay(projIndex) {
                 slide = project4Slides[projectIndices[projIndex]];
             } else if (projIndex === 4) {
                 slide = project5Slides[projectIndices[projIndex]];
+            } else if (projIndex === 5) {
+                slide = project6Slides[0];
             } else {
                 slide = emptySlides[projectIndices[projIndex] % emptySlides.length];
             }
@@ -1325,7 +1384,7 @@ function startProjectAutoPlay(projIndex) {
 
 // মাউস হোভার ইভেন্ট এবং অটোপ্লে শুরু
 document.addEventListener('DOMContentLoaded', function() {
-    for(var i = 0; i < 5; i++) {
+    for(var i = 0; i < 6; i++) {
         var imgContainer = document.getElementById('dataAnalyticsImgContainer' + i);
         if(imgContainer) {
             (function(index) {
