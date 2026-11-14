@@ -538,6 +538,23 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
 .multi-option input[type="checkbox"] {
     width: 18px; height: 18px; cursor: pointer; accent-color: var(--signal);
 }
+
+/* --- নতুন যোগ করা কন্টাক্ট বাটনগুলোর স্টাইল --- */
+.contact-action-btns {
+    display: flex;
+    gap: 15px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+}
+@media (max-width: 600px) {
+    .contact-action-btns {
+        flex-direction: column;
+    }
+    .contact-action-btns .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
 </style>
 </head>
 <body>
@@ -929,8 +946,17 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
 <section id="contact">
   <div class="eyebrow">CONTACT</div>
   <h2>Let’s work together.</h2>
-  <p class="sub">Tell me about your business and what you need. Sending the form opens a WhatsApp chat with your message ready, so I can reply to you directly.</p>
-  <form class="cform" id="cf" novalidate>
+  <!-- নতুন সাবহেডিং বসানো হয়েছে -->
+  <p class="sub">Send me a message or pick a time for a free 30-minute call to discuss your objectives, current marketing setup and next steps.</p>
+  
+  <!-- নতুন যোগ করা বাটনগুলো -->
+  <div class="contact-action-btns">
+      <a href="#" onclick="openCalendly(event)" class="btn main">Booking For A Free Call</a>
+      <button type="button" onclick="openMessageForm()" class="btn alt" style="background:transparent; border-color:var(--signal); color:var(--signal); cursor:pointer;">Sent Message</button>
+  </div>
+
+  <!-- ফর্মটি শুরুতে হাইড থাকবে, Sent Message বাটনে ক্লিক করলে শো করবে -->
+  <form class="cform" id="cf" novalidate style="display: none; margin-top: 24px;">
     <p class="fnote"><span class="req" aria-hidden="true">*</span> All fields are required.</p>
     <div class="fgrid">
       <div class="field"><label for="fname">Name <span class="req" aria-hidden="true">*</span></label><input id="fname" type="text" autocomplete="name" maxlength="100" required aria-required="true" aria-describedby="e-fname"><span class="err" id="e-fname">Please enter your name.</span></div>
@@ -1002,6 +1028,30 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
 </div>
 
 <script>
+// --- কন্টাক্ট বাটনগুলো হ্যান্ডেল করার নতুন ফাংশন ---
+function openCalendly(e) {
+    e.preventDefault();
+    // এখানে আপনার Calendly এর লিংকটি বসাবেন। উদাহরণস্বরূপ:
+    var calendlyUrl = "https://calendly.com/your-username/30min"; 
+    
+    // আপাতত একটি অ্যালার্ট দেখানো হচ্ছে, আপনি চাইলে উপরের লিংকটি ব্যবহার করে নতুন ট্যাবে ওপেন করতে পারেন:
+    // window.open(calendlyUrl, '_blank');
+    alert("Calendly Integration: Please replace this alert with your Calendly link (e.g., window.open('YOUR_CALENDLY_LINK', '_blank')).");
+}
+
+function openMessageForm() {
+    var form = document.getElementById('cf');
+    if (form.style.display === 'none') {
+        form.style.display = 'block';
+        form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // ফোকাস আনা হচ্ছে প্রথম ইনপুটে
+        setTimeout(function() { document.getElementById('fname').focus(); }, 500);
+    } else {
+        form.style.display = 'none';
+    }
+}
+// ---------------------------------------------
+
 // গ্লোবাল ভ্যারিয়েবল
 var hoverStates = [false, false, false, false, false, false];
 var autoPlayIntervals = [];
@@ -1145,7 +1195,8 @@ f.addEventListener('submit',function(e){
 document.getElementById('tagain').addEventListener('click',function(){
   f.reset();cv.value='';cLab.textContent='Search your country';cb.classList.remove('has');
   fields.forEach(function(el){el.closest('.field').classList.remove('bad');el.removeAttribute('aria-invalid');});
-  document.getElementById('fthanks').hidden=true;f.hidden=false;document.getElementById('fname').focus();
+  document.getElementById('fthanks').hidden=true;
+  f.hidden=false;document.getElementById('fname').focus();
 });
 })();
 
