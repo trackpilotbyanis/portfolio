@@ -145,8 +145,12 @@ details.svc[open] .chev svg{transform:rotate(180deg)}
     align-items: center;
     position: relative;
 }
+/* নতুন ক্লাস: ফুল উইডথ টেক্সটের জন্য */
+.svc-body-full {
+    grid-template-columns: 1fr;
+}
 .svc-body .text-content { display: flex; flex-direction: column; gap: 10px; }
-.svc-body p{margin:0; color:#CBD5E1;font-size:16px;line-height:1.6; white-space: normal;}
+.svc-body p{margin:0; color:#CBD5E1;font-size:16px;line-height:1.6; white-space: normal;text-align: justify;text-align-last: left;text-justify: inter-word;}
 
 .svc-body .project-img { 
     width: 100%; 
@@ -275,6 +279,9 @@ details.svc[open] .chev svg{transform:rotate(180deg)}
     color: #CBD5E1;
     font-size: 16px;
     line-height: 1.6;
+    text-align: justify;
+    text-align-last: left;
+    text-justify: inter-word;
 }
 
 .lightbox {
@@ -345,7 +352,8 @@ details.svc[open] .chev svg{transform:rotate(180deg)}
 @media (max-width:800px){
   .svc-body { grid-template-columns: 1fr; gap: 20px; padding-top: 0; }
   .svc-body .project-img { max-width: 100%; margin: 0 auto; }
-  .svc-body p { white-space: normal; }
+  .svc-body p { white-space: normal; text-align: center; text-align-last: center;}
+  .slide-desc { text-align: center; text-align-last: center;}
   .close-lightbox { top: 10px; right: 20px; font-size: 30px; }
   
   .outer-nav-btn {
@@ -603,45 +611,46 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
 <section id="services">
   <div class="eyebrow">SERVICES</div>
   <h2>What I can do for your business.</h2>
-  <p class="sub">Tracking that survives ad blockers and browser limits, and reports the same revenue everywhere.</p>
+  <!-- নতুন লেখা বসানো হয়েছে -->
+  <p class="sub">Reliable tracking for better data, smarter decisions, and improved ad performance.</p>
   <div class="svc-list">
     <details class="svc" name="svc">
-      <summary><span class="num">01</span><span class="ttl">Meta Ads management</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
-      <div class="svc-body">
+      <summary><span class="num">01</span><span class="ttl">Meta Ads Management</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+      <div class="svc-body svc-body-full">
         <div class="text-content">
-          <p>Campaign setup, audience targeting and ongoing optimization on Facebook and Instagram, driven by accurate conversion data.</p>
+          <p>I help businesses reach the right audience through well-planned Facebook and Instagram ad campaigns. From campaign setup and audience targeting to creative testing and performance optimization, I focus on generating quality leads, increasing sales, and making better use of your advertising budget.</p>
         </div>
       </div>
     </details>
     <details class="svc" name="svc">
-      <summary><span class="num">02</span><span class="ttl">Meta Ads &amp; Conversion API</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
-      <div class="svc-body">
+      <summary><span class="num">02</span><span class="ttl">Meta Pixel &amp; Conversion API (CAPI)</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+      <div class="svc-body svc-body-full">
          <div class="text-content">
-          <p>Pixel plus Conversions API with event deduplication and match quality improvements, so Meta optimizes on real purchases.</p>
+          <p>I set up Meta Pixel and Conversion API (CAPI) to track important customer actions on your website. By combining browser-side and server-side tracking, I help improve conversion data accuracy, reduce data loss, and give Meta better signals to optimize your ad campaigns.</p>
         </div>
       </div>
     </details>
     <details class="svc" name="svc">
-      <summary><span class="num">03</span><span class="ttl">GA4 e-commerce tracking</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
-      <div class="svc-body">
+      <summary><span class="num">03</span><span class="ttl">GA4 Conversion Tracking</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+      <div class="svc-body svc-body-full">
          <div class="text-content">
-          <p>Product views, add to cart, checkout steps and purchases, with clean data you can build funnels and reports on.</p>
+          <p>Understand how customers interact with your online store through accurate GA4 Conversion tracking. I set up important events such as View Item, Add to Cart, Begin Checkout, and Purchase using Google Tag Manager (GTM), helping you understand customer behavior and identify where sales opportunities are being lost.</p>
         </div>
       </div>
     </details>
     <details class="svc" name="svc">
-      <summary><span class="num">04</span><span class="ttl">Server-side GTM</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
-      <div class="svc-body">
+      <summary><span class="num">04</span><span class="ttl">Server-Side GTM</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+      <div class="svc-body svc-body-full">
          <div class="text-content">
-          <p>Browser and server containers hosted on Stape or Google Cloud, configured for reliable, first-party data collection.</p>
+          <p>I implement server-side tracking using Google Tag Manager to improve how website data is collected and shared with advertising and analytics platforms. It helps reduce browser-related tracking limitations, improve data control, and build a more reliable tracking setup for your business.</p>
         </div>
       </div>
     </details>
     <details class="svc" name="svc">
-      <summary><span class="num">05</span><span class="ttl">Google Ads tracking</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
-      <div class="svc-body">
+      <summary><span class="num">05</span><span class="ttl">Google Ads Conversion Tracking</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+      <div class="svc-body svc-body-full">
          <div class="text-content">
-          <p>Conversion tracking and remarketing audiences that match what your store actually sold.</p>
+          <p>I set up Google Ads conversion tracking to measure the actions that matter most to your business, including purchases, lead form submissions, phone calls, and other valuable interactions. With accurate conversion data, you can better understand campaign performance, optimize your ads, and make smarter advertising decisions.</p>
         </div>
       </div>
     </details>
@@ -651,37 +660,38 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
 <section id="why">
   <div class="eyebrow">WHY IT MATTERS</div>
   <h2>Why server-side tracking?</h2>
-  <p class="sub">Browsers now block or limit a lot of tracking data. Sending events from your server puts that data back under your control.</p>
+  <!-- নতুন লেখা বসানো হয়েছে -->
+  <p class="sub">Browsers and ad blockers can limit tracking data. Server-side tracking helps collect and share more reliable conversion data with your marketing platforms.</p>
   <div class="svc-list">
     <details class="svc" name="why">
-      <summary><span class="num">01</span><span class="ttl">Recover lost conversions</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
-      <div class="svc-body">
+      <summary><span class="num">01</span><span class="ttl">Recover Lost Conversion Data</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+      <div class="svc-body svc-body-full">
          <div class="text-content">
-          <p>Ad blockers, Safari and iOS limits stop browser pixels from reporting some sales. Events sent from the server are not affected by these browser limits.</p>
+          <p>Browsers, ad blockers, and privacy restrictions can sometimes prevent tracking events from being recorded properly. Server-side tracking helps reduce these data gaps by sending conversion events directly from your server to advertising platforms, making your tracking setup more reliable.</p>
         </div>
       </div>
     </details>
     <details class="svc" name="why">
-      <summary><span class="num">02</span><span class="ttl">Better ad optimization</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
-      <div class="svc-body">
+      <summary><span class="num">02</span><span class="ttl">Better Ad Optimization</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+      <div class="svc-body svc-body-full">
          <div class="text-content">
-          <p>Meta and Google learn from the conversions they receive. Fuller, cleaner data helps them find the right buyers and reduces wasted spend.</p>
+          <p>Advertising platforms rely on conversion data to understand which users are taking valuable actions. With more reliable event data, platforms like Meta and Google can better understand campaign performance and use those signals to improve ad delivery and optimization.</p>
         </div>
       </div>
     </details>
     <details class="svc" name="why">
-      <summary><span class="num">03</span><span class="ttl">Control over your data</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
-      <div class="svc-body">
+      <summary><span class="num">03</span><span class="ttl">More Control Over Your Data</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+      <div class="svc-body svc-body-full">
          <div class="text-content">
-          <p>You decide which data goes to which platform, and it can be sent through your own domain.</p>
+          <p>Server-side tracking gives you greater control over how website data is collected, processed, and shared with third-party platforms. You can manage the data sent to each platform and build a tracking setup that better fits your business needs and privacy requirements.</p>
         </div>
       </div>
     </details>
     <details class="svc" name="why">
-      <summary><span class="num">04</span><span class="ttl">Faster pages</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
-      <div class="svc-body">
+      <summary><span class="num">04</span><span class="ttl">Improved Data Accuracy</span><span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+      <div class="svc-body svc-body-full">
          <div class="text-content">
-          <p>Moving tags off the browser means fewer scripts for your visitors to load, so pages open faster.</p>
+          <p>Combining browser-side and server-side tracking helps capture conversion events through two different methods. With proper event deduplication, duplicate events can be identified and handled correctly, helping maintain more consistent and accurate conversion reporting.</p>
         </div>
       </div>
     </details>
