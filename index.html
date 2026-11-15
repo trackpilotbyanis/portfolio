@@ -555,6 +555,14 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
         text-align: center;
     }
 }
+
+/* --- লাইটবক্স pointer-events নিয়ন্ত্রণ --- */
+.lightbox[aria-hidden="true"] {
+    pointer-events: none;
+}
+.lightbox.active[aria-hidden="false"] {
+    pointer-events: auto;
+}
 </style>
 </head>
 <body>
@@ -562,7 +570,7 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
 <div class="wrap navbar">
 <div class="brand">
   <span class="live-dot" title="Online"></span>
-  <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/trackpilotbyanis_logo.png" alt="TrackPilot Logo">
+  <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/trackpilotbyanis_logo.png" alt="TrackPilot Logo" loading="eager" decoding="async">
 </div>
 <nav aria-label="Main"><a href="#home">Home</a><a href="#services">Services</a><a href="#work">Projects</a><a href="#process">Process</a><a href="#contact">Contact</a></nav>
 </div>
@@ -583,18 +591,18 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
     
     <div class="hero-reviews" aria-label="Client Trust">
       <div class="hr-avatars">
-        <img src="https://i.pravatar.cc/80?img=12" alt="Reviewer 1" width="44" height="44">
-        <img src="https://i.pravatar.cc/80?img=32" alt="Reviewer 2" width="44" height="44">
-        <img src="https://i.pravatar.cc/80?img=45" alt="Reviewer 3" width="44" height="44">
-        <img src="https://i.pravatar.cc/80?img=5" alt="Reviewer 4" width="44" height="44">
-        <img src="https://i.pravatar.cc/80?img=68" alt="Reviewer 5" width="44" height="44">
+        <img src="https://i.pravatar.cc/80?img=12" alt="Reviewer 1" width="44" height="44" loading="lazy" decoding="async">
+        <img src="https://i.pravatar.cc/80?img=32" alt="Reviewer 2" width="44" height="44" loading="lazy" decoding="async">
+        <img src="https://i.pravatar.cc/80?img=45" alt="Reviewer 3" width="44" height="44" loading="lazy" decoding="async">
+        <img src="https://i.pravatar.cc/80?img=5" alt="Reviewer 4" width="44" height="44" loading="lazy" decoding="async">
+        <img src="https://i.pravatar.cc/80?img=68" alt="Reviewer 5" width="44" height="44" loading="lazy" decoding="async">
       </div>
       <div class="hr-meta">
         <p class="hr-text">Trusted by <strong>20+ businesses</strong> worldwide</p>
       </div>
     </div>
   </div>
-  <div class="photo"><img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/my_pic.png" alt="Md. Anisur Rahman"></div>
+  <div class="photo"><img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/my_pic.png" alt="Md. Anisur Rahman" loading="eager" decoding="async" width="380" height="380"></div>
 </div>
 
 <div class="stats"><div><strong>3+</strong><span>Years experience</span></div><div><strong>50+</strong><span>Projects completed</span></div><div><strong>20+</strong><span>Clients</span></div><div><strong>$50,000</strong><span>Total ad spend</span></div></div>
@@ -743,7 +751,7 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
         </div>
         
         <div class="project-img" id="dataAnalyticsImgContainer0">
-          <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_ads_eco_anis_1.jpg" class="slider-img" data-images='[
+          <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_ads_eco_anis_1.jpg" class="slider-img" loading="lazy" decoding="async" data-images='[
             "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_ads_eco_anis_1.jpg"
           ]' onclick="openLightbox(this)" alt="E-commerce Meta Ads Campaign">
           <span class="img-counter" style="position: absolute; bottom: 10px; right: 10px; background: #FFD54F; color: #101B35; padding: 4px 10px; border-radius: 12px; font-size: 13px; font-weight: 700; z-index: 5;">1 / 1</span>
@@ -771,7 +779,7 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
         </div>
         
         <div class="project-img" id="dataAnalyticsImgContainer1">
-          <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_bs(1).jpg" class="slider-img" data-images='[
+          <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_bs(1).jpg" class="slider-img" loading="lazy" decoding="async" data-images='[
             "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_bs(1).jpg",
             "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_bs(2).jpg",
             "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta_pixel_bs(3).jpg",
@@ -807,7 +815,7 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
         </div>
         
         <div class="project-img" id="dataAnalyticsImgContainer2">
-          <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ga4_ecom_track_bs_ss_anis(1).jpg" class="slider-img" data-images='[
+          <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ga4_ecom_track_bs_ss_anis(1).jpg" class="slider-img" loading="lazy" decoding="async" data-images='[
             "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ga4_ecom_track_bs_ss_anis(1).jpg",
             "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ga4_ecom_track_bs_ss_anis(2).jpg",
             "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ga4_ecom_track_bs_ss_anis(3).jpg",
@@ -839,7 +847,7 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
         </div>
         
         <div class="project-img" id="dataAnalyticsImgContainer3">
-          <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/gads_ecom_drm_track_bs_ss_anis(1).jpg" class="slider-img" data-images='[
+          <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/gads_ecom_drm_track_bs_ss_anis(1).jpg" class="slider-img" loading="lazy" decoding="async" data-images='[
             "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/gads_ecom_drm_track_bs_ss_anis(1).jpg",
             "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/gads_ecom_drm_track_bs_ss_anis(2).jpg",
             "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/gads_ecom_drm_track_bs_ss_anis(3).jpg"
@@ -869,7 +877,7 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
         </div>
         
         <div class="project-img" id="dataAnalyticsImgContainer4">
-          <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(1).jpg" class="slider-img" data-images='[
+          <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(1).jpg" class="slider-img" loading="lazy" decoding="async" data-images='[
             "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(1).jpg",
             "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(2).jpg",
             "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ecom_data_analysis_overview_anis(3).jpg",
@@ -914,7 +922,7 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
         </div>
         
         <div class="project-img" id="dataAnalyticsImgContainer5">
-          <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/tiktok_tracking(1).jpg" class="slider-img" data-images='[
+          <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/tiktok_tracking(1).jpg" class="slider-img" loading="lazy" decoding="async" data-images='[
             "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/tiktok_tracking(1).jpg",
             "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/tiktok_tracking(2).jpg",
             "https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/tiktok_tracking(3).jpg",
@@ -946,16 +954,13 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
 <section id="contact">
   <div class="eyebrow">CONTACT</div>
   <h2>Let’s work together.</h2>
-  <!-- নতুন সাবহেডিং বসানো হয়েছে -->
   <p class="sub">Send me a message or pick a time for a free 30-minute call to discuss your objectives, current marketing setup and next steps.</p>
   
-  <!-- নতুন যোগ করা বাটনগুলো -->
   <div class="contact-action-btns">
-      <a href="#" onclick="openCalendly(event)" class="btn main">Booking For A Free Call</a>
+      <a href="#" onclick="openCalendly(event)" class="btn main">Booking A Free Call</a>
       <button type="button" onclick="openMessageForm()" class="btn alt" style="background:transparent; border-color:var(--signal); color:var(--signal); cursor:pointer;">Sent Message</button>
   </div>
 
-  <!-- ফর্মটি শুরুতে হাইড থাকবে, Sent Message বাটনে ক্লিক করলে শো করবে -->
   <form class="cform" id="cf" novalidate style="display: none; margin-top: 24px;">
     <p class="fnote"><span class="req" aria-hidden="true">*</span> All fields are required.</p>
     <div class="fgrid">
@@ -972,12 +977,13 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
           <input type="hidden" id="fservice" required aria-required="true">
           <button type="button" class="multi-select-btn" id="msBtn">Select one or more <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
           <div class="multi-select-panel" id="msPanel">
-            <label class="multi-option"><input type="checkbox" value="Meta Ads"> Meta Ads</label>
-            <label class="multi-option"><input type="checkbox" value="GA4"> GA4</label>
-            <label class="multi-option"><input type="checkbox" value="Google Tag Manager"> Google Tag Manager</label>
-            <label class="multi-option"><input type="checkbox" value="Meta Pixel & CAPI"> Meta Pixel & CAPI</label>
-            <label class="multi-option"><input type="checkbox" value="CRO"> CRO</label>
-            <label class="multi-option"><input type="checkbox" value="Reporting"> Reporting</label>
+            <label class="multi-option"><input type="checkbox" value="Meta Ads Campaign Management"> Meta Ads Campaign Management</label>
+            <label class="multi-option"><input type="checkbox" value="Meta Pixel & Conversions API Setup"> Meta Pixel &amp; Conversions API Setup</label>
+            <label class="multi-option"><input type="checkbox" value="GA4 Ecommerce BS & SS Tracking"> GA4 Ecommerce BS &amp; SS Tracking</label>
+            <label class="multi-option"><input type="checkbox" value="Google Ads Conversion Tracking"> Google Ads Conversion Tracking</label>
+            <label class="multi-option"><input type="checkbox" value="Data Analytics & Decision"> Data Analytics &amp; Decision</label>
+            <label class="multi-option"><input type="checkbox" value="TikTok Tracking Setup"> TikTok Tracking Setup</label>
+            <label class="multi-option"><input type="checkbox" value="Other's"> Other's</label>
           </div>
         </div>
         <span class="err" id="e-fservice">Please select at least one service.</span>
@@ -1014,13 +1020,13 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
 </footer>
 <a class="wa-float" href="https://wa.me/8801626868084" target="_blank" rel="noopener noreferrer" aria-label="Message me on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 21l1.600-4.600A8.500 8.500 0 1 1 8 19.600L3 21z"/><path d="M9.200 8.800c-.4.800-.2 2 1 3.400 1.200 1.400 2.600 2.100 3.500 1.900l.9-.9-1.800-1-.8.600c-.8-.4-1.500-1.100-1.900-1.900l.6-.8-1-1.800z" fill="currentColor" stroke="none"/></svg></a>
 
-<div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
-    <span class="close-lightbox" onclick="closeLightbox(event)">&times;</span>
+<div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Image preview" aria-hidden="true" onclick="closeLightbox(event)">
+    <span class="close-lightbox" onclick="closeLightbox(event)" role="button" tabindex="0" aria-label="Close image preview">&times;</span>
     <button class="lightbox-nav-btn lightbox-prev-btn" aria-label="Previous Image" onclick="lightboxPrev(event)">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
     </button>
 
-    <img id="lightbox-img" src="" alt="Enlarged Image">
+    <img id="lightbox-img" src="" alt="Enlarged Image" loading="eager" decoding="async">
     
     <button class="lightbox-nav-btn lightbox-next-btn" aria-label="Next Image" onclick="lightboxNext(event)">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
@@ -1031,11 +1037,7 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
 // --- কন্টাক্ট বাটনগুলো হ্যান্ডেল করার নতুন ফাংশন ---
 function openCalendly(e) {
     e.preventDefault();
-    // এখানে আপনার Calendly এর লিংকটি বসাবেন। উদাহরণস্বরূপ:
     var calendlyUrl = "https://calendly.com/your-username/30min"; 
-    
-    // আপাতত একটি অ্যালার্ট দেখানো হচ্ছে, আপনি চাইলে উপরের লিংকটি ব্যবহার করে নতুন ট্যাবে ওপেন করতে পারেন:
-    // window.open(calendlyUrl, '_blank');
     alert("Calendly Integration: Please replace this alert with your Calendly link (e.g., window.open('YOUR_CALENDLY_LINK', '_blank')).");
 }
 
@@ -1044,7 +1046,6 @@ function openMessageForm() {
     if (form.style.display === 'none') {
         form.style.display = 'block';
         form.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        // ফোকাস আনা হচ্ছে প্রথম ইনপুটে
         setTimeout(function() { document.getElementById('fname').focus(); }, 500);
     } else {
         form.style.display = 'none';
@@ -1056,26 +1057,56 @@ function openMessageForm() {
 var hoverStates = [false, false, false, false, false, false];
 var autoPlayIntervals = [];
 
-// --- লাইটবক্স লজিক ---
+// --- লাইটবক্স লজিক (Accessibility + Focus Trap সহ) ---
 var currentLightboxImages = [];
 var currentLightboxIndex = 0;
+var lastFocusedElement = null;
+
+function getLightboxFocusables() {
+    var lb = document.getElementById('lightbox');
+    return Array.prototype.slice.call(
+        lb.querySelectorAll('button, [href], [tabindex]:not([tabindex="-1"])')
+    ).filter(function(el){ return el.offsetParent !== null; });
+}
 
 function openLightbox(img) {
     var lightbox = document.getElementById('lightbox');
     var lightboxImg = document.getElementById('lightbox-img');
+    lastFocusedElement = document.activeElement;
+
     currentLightboxImages = JSON.parse(img.getAttribute('data-images'));
-    currentLightboxIndex = currentLightboxImages.findIndex(function(url) { return img.src.includes(url) || url.includes(img.src); });
+    currentLightboxIndex = currentLightboxImages.findIndex(function(url) {
+        return img.src.includes(url) || url.includes(img.src);
+    });
     if (currentLightboxIndex === -1) currentLightboxIndex = 0;
     lightboxImg.src = currentLightboxImages[currentLightboxIndex];
+    lightboxImg.alt = img.alt || 'Enlarged Image';
+
     lightbox.style.display = 'flex';
-    setTimeout(function() { lightbox.classList.add('active'); }, 10);
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.querySelectorAll('body > *:not(#lightbox)').forEach(function(el){
+        el.setAttribute('aria-hidden', 'true');
+    });
+
+    setTimeout(function() {
+        lightbox.classList.add('active');
+        var focusables = getLightboxFocusables();
+        if (focusables.length) focusables[0].focus();
+    }, 10);
 }
 
 function closeLightbox(e) {
     if (e) e.stopPropagation();
     var lightbox = document.getElementById('lightbox');
     lightbox.classList.remove('active');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.querySelectorAll('body > *:not(#lightbox)').forEach(function(el){
+        el.removeAttribute('aria-hidden');
+    });
     setTimeout(function() { lightbox.style.display = 'none'; }, 300);
+    if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+        lastFocusedElement.focus();
+    }
 }
 
 function lightboxNext(e) {
@@ -1098,10 +1129,29 @@ document.getElementById('lightbox').addEventListener('click', function(e) {
 
 document.addEventListener('keydown', function(e) {
     var lightbox = document.getElementById('lightbox');
-    if (lightbox.classList.contains('active')) {
-        if (e.key === 'Escape') closeLightbox(e);
-        if (e.key === 'ArrowRight') lightboxNext(e);
-        if (e.key === 'ArrowLeft') lightboxPrev(e);
+    if (!lightbox.classList.contains('active')) return;
+
+    if (e.key === 'Escape') { closeLightbox(e); return; }
+    if (e.key === 'ArrowRight') { lightboxNext(e); return; }
+    if (e.key === 'ArrowLeft') { lightboxPrev(e); return; }
+
+    if (e.key === 'Tab') {
+        var focusables = getLightboxFocusables();
+        if (!focusables.length) return;
+        var first = focusables[0];
+        var last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault(); last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault(); first.focus();
+        }
+    }
+});
+
+document.querySelector('.close-lightbox').addEventListener('keydown', function(e){
+    if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        closeLightbox(e);
     }
 });
 
@@ -1200,9 +1250,8 @@ document.getElementById('tagain').addEventListener('click',function(){
 });
 })();
 
-// --- সব প্রজেক্টের জন্য অটোমেটিক স্লাইডার এবং মাউস রাখলে থেমে যাওয়ার (Pause on Hover) লজিক ---
+// --- সব প্রজেক্টের জন্য অটোমেটিক স্লাইডার এবং মাউস রাখলে থেমে যাওয়ার (Pause on Hover) লজিক ---
 
-// Project 1 এর Step 1 (E-commerce) এবং Step 2 (Dental Clinic)
 var project1Slides = [
     {
         title: "E-commerce Meta Ads Campaign – Case Study",
@@ -1220,7 +1269,6 @@ var project1Slides = [
     }
 ];
 
-// Project 2 এর Step 1 (Browser-Side) এবং Step 2 (Server-Side)
 var project2Slides = [
     {
         title: "Meta Pixel Browser-Side Tracking",
@@ -1256,7 +1304,6 @@ var project2Slides = [
     }
 ];
 
-// Project 3 এর Step 1 ও Step 2 এর ডেটা
 var project3Slides = [
     {
         title: "GA4 Ecommerce BS & SS Tracking",
@@ -1280,7 +1327,6 @@ var project3Slides = [
     }
 ];
 
-// Project 4 এর Step 1 (GAds Ecommerce & DRM), Step 2 (GAds Lead), Step 3 (Cookie Boat CMP), Step 4 (Microsoft Clarity)
 var project4Slides = [
     {
         title: "GAds Ecommerce & DRM BS & SS Tracking",
@@ -1318,7 +1364,6 @@ var project4Slides = [
     }
 ];
 
-// Project 5 এর Step 1 (Data Analysis Overview), Step 2 (Problem Find & Take Decision)
 var project5Slides = [
     {
         title: "Ecommerce Business - Data Analysis Overview",
@@ -1365,7 +1410,6 @@ var project5Slides = [
     }
 ];
 
-// Project 6 এর Step 1 (TikTok Tracking)
 var project6Slides = [
     {
         title: "TikTok Tracking Implementation",
@@ -1382,18 +1426,15 @@ var project6Slides = [
     }
 ];
 
-// অন্যান্য প্রজেক্টের জন্য ডামি ডেটা (খালি)
 var emptySlides = [
     { title: "", desc: "", images: [] },
     { title: "", desc: "", images: [] },
     { title: "", desc: "", images: [] }
 ];
 
-// গ্লোবাল ভ্যারিয়েবল
 var projectIndices = [0, 0, 0, 0, 0, 0];
 var imageIndices = [0, 0, 0, 0, 0, 0];
 
-// UI আপডেট করার ফাংশন
 function updateProjectUI(projIndex) {
     var container = document.getElementById('dataAnalyticsImgContainer' + projIndex);
     if(!container) return;
@@ -1401,37 +1442,30 @@ function updateProjectUI(projIndex) {
     var slide;
     var maxSlides = 1;
     
-    // Project 1 (index 0)
     if (projIndex === 0) {
         slide = project1Slides[projectIndices[projIndex]];
         maxSlides = project1Slides.length;
     }
-    // Project 2 (index 1)
     else if (projIndex === 1) {
         slide = project2Slides[projectIndices[projIndex]];
         maxSlides = project2Slides.length;
     }
-    // Project 3 (index 2)
     else if (projIndex === 2) {
         slide = project3Slides[projectIndices[projIndex]];
         maxSlides = project3Slides.length;
     } 
-    // Project 4 (index 3)
     else if (projIndex === 3) {
         slide = project4Slides[projectIndices[projIndex]];
         maxSlides = project4Slides.length;
     } 
-    // Project 5 (index 4)
     else if (projIndex === 4) {
         slide = project5Slides[projectIndices[projIndex]];
         maxSlides = project5Slides.length;
     } 
-    // Project 6 (index 5)
     else if (projIndex === 5) {
-        slide = project6Slides[0]; // Only one slide
+        slide = project6Slides[0];
         maxSlides = 1;
     }
-    // অন্যান্য
     else {
         slide = emptySlides[projectIndices[projIndex] % emptySlides.length];
     }
@@ -1442,11 +1476,9 @@ function updateProjectUI(projIndex) {
     var counter = container.querySelector('.img-counter');
     var stepCounter = container.closest('.svc-body').querySelector('.step-counter');
 
-    // টেক্সট আপডেট
     titleEl.textContent = slide.title;
     descEl.innerHTML = slide.desc; 
     
-    // Step কাউন্টার আপডেট
     if(stepCounter) {
         if (projIndex === 0) {
              stepCounter.textContent = "Campaign type " + (projectIndices[projIndex] + 1) + " of 2";
@@ -1465,20 +1497,17 @@ function updateProjectUI(projIndex) {
         }
     }
 
-    // ছবি আপডেট
     if (slide.images && slide.images.length > 0) {
         var safeSrc = encodeURI(slide.images[imageIndices[projIndex]]);
         imgElement.src = safeSrc; 
         imgElement.setAttribute('data-images', JSON.stringify(slide.images)); 
         
-        // ইমেজ কাউন্টার আপডেট
         if(counter) {
             counter.textContent = (imageIndices[projIndex] + 1) + " / " + slide.images.length;
         }
     }
 }
 
-// অটো প্লে শুরু করার ফাংশন
 function startProjectAutoPlay(projIndex) {
     clearInterval(autoPlayIntervals[projIndex]);
     autoPlayIntervals[projIndex] = setInterval(function() {
@@ -1508,10 +1537,9 @@ function startProjectAutoPlay(projIndex) {
                 updateProjectUI(projIndex);
             }
         }
-    }, 2500); // ২.৫ সেকেন্ড পর পর ছবি পরিবর্তন হবে
+    }, 2500);
 }
 
-// মাউস হোভার ইভেন্ট এবং অটোপ্লে শুরু
 document.addEventListener('DOMContentLoaded', function() {
     for(var i = 0; i < 6; i++) {
         var imgContainer = document.getElementById('dataAnalyticsImgContainer' + i);
@@ -1529,34 +1557,28 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// অ্যারো ক্লিক করলে (Slide পরিবর্তন)
 function nextSlide(e, btn, projIndex) {
     e.preventDefault();
-    // Project 1
     if (projIndex === 0) {
         projectIndices[projIndex] = (projectIndices[projIndex] + 1) % 2;
         imageIndices[projIndex] = 0; 
         updateProjectUI(projIndex);
     }
-    // Project 2
     else if (projIndex === 1) {
         projectIndices[projIndex] = (projectIndices[projIndex] + 1) % 2;
         imageIndices[projIndex] = 0; 
         updateProjectUI(projIndex);
     }
-    // Project 3
     else if (projIndex === 2) {
         projectIndices[projIndex] = (projectIndices[projIndex] + 1) % 2;
         imageIndices[projIndex] = 0; 
         updateProjectUI(projIndex);
     } 
-    // Project 4
     else if (projIndex === 3) {
         projectIndices[projIndex] = (projectIndices[projIndex] + 1) % 4;
         imageIndices[projIndex] = 0; 
         updateProjectUI(projIndex);
     }
-    // Project 5
     else if (projIndex === 4) {
         projectIndices[projIndex] = (projectIndices[projIndex] + 1) % 2;
         imageIndices[projIndex] = 0; 
