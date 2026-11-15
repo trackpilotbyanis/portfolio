@@ -111,6 +111,29 @@ header.site nav a{margin:0;padding:10px 2px;color:#E2E8F0;font-weight:500;font-s
 header.site nav a:hover{color:#8DB6FF;border-bottom-color:#8DB6FF}
 header.site a:focus-visible{outline:3px solid #fff;outline-offset:3px}
 
+/* --- হেডারের নতুন CTA বাটন --- */
+.header-cta {
+    justify-self: end;
+}
+
+.btn-header-cta {
+    display: inline-block;
+    background-color: #FFE48A;
+    color: #101B35;
+    padding: 9px 18px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.btn-header-cta:hover {
+    background-color: #FFD54F;
+    transform: translateY(-1px);
+}
+
 @media (max-width:768px){
   header.site .navbar{display:flex; flex-direction:column; padding:10px 0;}
   header.site .navbar::after{display:none}
@@ -118,6 +141,15 @@ header.site a:focus-visible{outline:3px solid #fff;outline-offset:3px}
   header.site nav a{font-size:14.5px;padding:10px 2px}
   header.site .brand{justify-self:center; margin:0 auto;}
   header.site .brand img{height:60px;}
+  
+  .header-cta {
+      justify-self: center;
+      margin-top: 12px;
+  }
+  .btn-header-cta {
+      width: 100%;
+      text-align: center;
+  }
 }
 
 .eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:14px;font:500 12px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.22em;color:var(--muted)}
@@ -572,7 +604,17 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
   <span class="live-dot" title="Online"></span>
   <img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/trackpilotbyanis_logo.png" alt="TrackPilot Logo" loading="eager" decoding="async">
 </div>
-<nav aria-label="Main"><a href="#home">Home</a><a href="#services">Services</a><a href="#work">Projects</a><a href="#process">Process</a><a href="#contact">Contact</a></nav>
+<nav aria-label="Main">
+  <a href="#home">Home</a>
+  <a href="#services">Services</a>
+  <a href="#work">Projects</a>
+  <a href="#process">Process</a>
+  <a href="#contact">Contact</a>
+</nav>
+<!-- নতুন যোগ করা হেডার বাটন -->
+<div class="header-cta">
+  <a href="#contact" class="btn-header-cta">Booking A Free Call</a>
+</div>
 </div>
 </header>
 <div class="herobg" id="home">
