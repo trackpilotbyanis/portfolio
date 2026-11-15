@@ -11,9 +11,44 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#FFFFFF;--panel:#F4F7FB;--ink:#101B35;--head:#101B35;--body:#334155;--muted:#334155;--line:#DCE4EE;--signal:#2878FF;--hot:#2878FF;--on-signal:#FFFFFF}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0C1426;--panel:#151F3A;--ink:#FFFFFF;--head:#FFFFFF;--body:#CBD5E1;--muted:#AAB8CC;--line:#26365A;--signal:#2878FF;--hot:#5C9BFF;--on-signal:#FFFFFF}}
-:root[data-theme="dark"]{--bg:#0C1426;--panel:#151F3A;--ink:#FFFFFF;--head:#FFFFFF;--body:#CBD5E1;--muted:#AAB8CC;--line:#26365A;--signal:#2878FF;--hot:#5C9BFF;--on-signal:#FFFFFF}
+:root{
+  --bg:#FFFFFF;
+  --panel:#F4F7FB;
+  --ink:#101B35;
+  --head:#101B35;
+  --body:#334155;
+  --muted:#334155;
+  --line:#DCE4EE;
+  --signal:#2878FF;
+  --hot:#2878FF;
+  --on-signal:#FFFFFF
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C1426;
+    --panel:#151F3A;
+    --ink:#FFFFFF;
+    --head:#FFFFFF;
+    --body:#CBD5E1;
+    --muted:#AAB8CC;
+    --line:#26365A;
+    --signal:#2878FF;
+    --hot:#5C9BFF;
+    --on-signal:#FFFFFF
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C1426;
+  --panel:#151F3A;
+  --ink:#FFFFFF;
+  --head:#FFFFFF;
+  --body:#CBD5E1;
+  --muted:#AAB8CC;
+  --line:#26365A;
+  --signal:#2878FF;
+  --hot:#5C9BFF;
+  --on-signal:#FFFFFF
+}
 html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
 *,*::before,*::after{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--body);font:400 17px/1.65 "Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -46,10 +81,39 @@ nav a:hover{color:var(--signal)}
 .photo{background:transparent;border-radius:50%;display:flex;justify-content:center;align-items:center;overflow:hidden;aspect-ratio:1/1;max-width:380px;width:100%;margin-left:auto;border:3px solid #FACC15; box-shadow: 0 0 20px rgba(250, 204, 21, 0.2);}
 .photo img{display:block;width:100%;height:100%;object-fit:cover}
 
+/* --- Flow Diagram (Solid Border + Glow) --- */
 .flowrow{max-width:640px;margin:0 auto 56px}
-.flow{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px}
-.flow svg{width:100%;height:auto;display:block}
-.flow .cap{font-size:14px;color:var(--muted);margin:10px 4px 0}
+
+.flow {
+    background: transparent;
+    border: 1.5px solid #FACC15;
+    border-radius: 12px; 
+    padding: 24px;
+    position: relative;
+    box-shadow: 0 0 15px rgba(250, 204, 21, 0.15); 
+}
+
+.flow svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0px 0px 6px rgba(250, 204, 21, 0.2));
+}
+
+.flow svg text {
+    fill: #101B35 !important;
+}
+
+.flow .cap {
+    font-size: 14px;
+    color: #101B35;
+    margin: 16px 0 0;
+    text-align: center;
+    font-weight: 500;
+    font-style: italic;
+    letter-spacing: 0.5px;
+}
+
 .pulse{animation:move 3.2s linear infinite}
 @keyframes move{from{stroke-dashoffset:24}to{stroke-dashoffset:0}}
 @media (prefers-reduced-motion:reduce){.pulse{animation:none}}
@@ -656,21 +720,44 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
 <div class="flowrow">
   <div class="flow" role="img" aria-label="Diagram: a purchase event travels from the website through a server-side GTM container to Meta, GA4 and Google Ads">
     <svg viewBox="0 0 420 250" xmlns="http://www.w3.org/2000/svg" font-family="Public Sans, sans-serif" font-size="15">
-      <g fill="none" stroke="var(--signal)" stroke-width="2.5" stroke-dasharray="6 6" class="pulse">
-        <path d="M110 125 H170"/><path d="M250 125 C285 125 285 50 320 50"/><path d="M250 125 H320"/><path d="M250 125 C285 125 285 200 320 200"/>
+      <!-- ফ্লো লাইনগুলোতে ড্যাশ এবং অ্যানিমেশন -->
+      <g fill="none" stroke="#FACC15" stroke-width="2.5" stroke-dasharray="6 6" class="pulse">
+        <path d="M110 125 H170"/>
+        <path d="M250 125 C285 125 285 50 320 50"/>
+        <path d="M250 125 H320"/>
+        <path d="M250 125 C285 125 285 200 320 200"/>
       </g>
-      <rect x="10" y="95" width="100" height="60" rx="8" fill="var(--panel)" stroke="var(--line)" stroke-width="1.5"/>
-      <text x="60" y="122" text-anchor="middle" fill="var(--ink)" font-weight="600">Store</text>
-      <text x="60" y="140" text-anchor="middle" fill="var(--muted)">Purchase</text>
-      <rect x="170" y="85" width="80" height="80" rx="8" fill="var(--signal)"/>
-      <text x="210" y="121" text-anchor="middle" fill="var(--on-signal)" font-weight="700">Server</text>
-      <text x="210" y="139" text-anchor="middle" fill="var(--on-signal)" font-weight="700">GTM</text>
-      <g fill="var(--panel)" stroke="var(--line)" stroke-width="1.5">
-        <rect x="320" y="28" width="92" height="44" rx="8"/><rect x="320" y="103" width="92" height="44" rx="8"/><rect x="320" y="178" width="92" height="44" rx="8"/>
+      
+      <!-- Store Purchase বক্স -->
+      <rect x="10" y="95" width="100" height="60" rx="8" fill="#FFFFFF" stroke="#FACC15" stroke-width="1.5"/>
+      <image href="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/cart-success-icons.png" x="45" y="103" width="30" height="30" />
+      <text x="60" y="148" text-anchor="middle" fill="#101B35" font-weight="700" font-size="11">Store Purchase</text>
+      
+      <!-- Server GTM বক্স -->
+      <rect x="170" y="85" width="80" height="80" rx="8" fill="#FFFFFF" stroke="#FACC15" stroke-width="1.5"/>
+      <image href="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/google-tag-manager-icon.png" x="195" y="98" width="30" height="30" />
+      <text x="210" y="148" text-anchor="middle" fill="#101B35" font-weight="700" font-size="12">Server</text>
+      <text x="210" y="160" text-anchor="middle" fill="#101B35" font-weight="700" font-size="12">GTM</text>
+      
+      <!-- ডানদিকের বক্সগুলো -->
+      <g fill="#FFFFFF" stroke="#FACC15" stroke-width="1.5">
+        <rect x="320" y="28" width="92" height="44" rx="8"/>
+        <rect x="320" y="103" width="92" height="44" rx="8"/>
+        <rect x="320" y="178" width="92" height="44" rx="8"/>
       </g>
-      <g fill="var(--ink)" text-anchor="middle" font-weight="600">
-        <text x="366" y="55">Meta CAPI</text><text x="366" y="130">GA4</text><text x="366" y="205">Google Ads</text>
-      </g>
+      
+      <!-- Meta CAPI আইকন ও টেক্সট -->
+      <image href="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/meta-icon.png" x="357" y="35" width="18" height="18" />
+      <text x="366" y="65" text-anchor="middle" fill="#101B35" font-weight="700" font-size="11">Meta CAPI</text>
+      
+      <!-- GA4 আইকন ও টেক্সট -->
+      <image href="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/ga4-icon.png" x="357" y="110" width="18" height="18" />
+      <text x="366" y="140" text-anchor="middle" fill="#101B35" font-weight="700" font-size="11">GA4</text>
+      
+      <!-- Google Ads আইকন ও টেক্সট -->
+      <image href="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/google-ad.png" x="357" y="185" width="18" height="18" />
+      <text x="366" y="215" text-anchor="middle" fill="#101B35" font-weight="700" font-size="11">Google Ads</text>
+
     </svg>
     <p class="cap">One purchase, sent once from your server to every platform that needs it.</p>
   </div>
