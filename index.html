@@ -571,8 +571,28 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
 /* --- Hero reviews (Trusted by 20+ businesses worldwide) --- */
 .hero-reviews{display:flex;align-items:center;gap:16px;margin-top:26px;flex-wrap:wrap}
 .hr-avatars{display:flex}
-.hr-avatars img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid #101B35;margin-left:-12px;background:#CBD5E1}
-.hr-avatars img:first-child{margin-left:0}
+
+/* --- নতুন আপডেট: ছবির বদলে টেক্সট বক্স (MH, JP, TR...) --- */
+.avatar-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%; /* গোল করতে চাইলে 50%, স্কয়ার বা হালকা গোল করতে চাইলে 8px দিন */
+    background: linear-gradient(135deg, #FACC15, #F97316); /* হলুদ থেকে কমলা গ্রেডিয়েন্ট */
+    color: #101B35; /* ডার্ক নেভি টেক্সট */
+    font-weight: 700;
+    font-size: 14px;
+    border: 2px solid #101B35; 
+    margin-left: -12px; /* ওভারল্যাপ করার জন্য */
+    letter-spacing: 0.5px;
+    font-family: "Public Sans", sans-serif;
+}
+.avatar-box:first-child {
+    margin-left: 0;
+}
+
 .hr-meta{display:flex;flex-direction:column;gap:2px}
 .hr-text{margin:0;font-size:15px;color:#CBD5E1; font-weight: 500;}
 .hr-text strong { color: #FACC15; }
@@ -663,6 +683,47 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
 .lightbox.active[aria-hidden="false"] {
     pointer-events: auto;
 }
+
+/* --- Why Choose Me নতুন সেকশনের স্টাইল --- */
+.why-choose-me-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+.why-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 24px;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.why-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--signal);
+    box-shadow: 0 10px 24px rgba(16,27,53,.1);
+}
+.why-card h3 {
+    font-size: 18px;
+    color: var(--head);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.why-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 15.5px;
+    line-height: 1.6;
+    text-align: justify;
+    text-align-last: left;
+    text-justify: inter-word;
+}
+@media (max-width: 600px) {
+    .why-card p { text-align: center; text-align-last: center; }
+    .why-card h3 { justify-content: center; }
+}
 </style>
 </head>
 <body>
@@ -674,6 +735,7 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
 </div>
 <nav aria-label="Main">
   <a href="#home">Home</a>
+  <a href="#why-me">Why Me</a> <!-- নতুন যোগ করা হয়েছে -->
   <a href="#services">Services</a>
   <a href="#work">Projects</a>
   <a href="#process">Process</a>
@@ -701,11 +763,14 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
     
     <div class="hero-reviews" aria-label="Client Trust">
       <div class="hr-avatars">
-        <img src="https://i.pravatar.cc/80?img=12" alt="Reviewer 1" width="44" height="44" loading="lazy" decoding="async">
-        <img src="https://i.pravatar.cc/80?img=32" alt="Reviewer 2" width="44" height="44" loading="lazy" decoding="async">
-        <img src="https://i.pravatar.cc/80?img=45" alt="Reviewer 3" width="44" height="44" loading="lazy" decoding="async">
-        <img src="https://i.pravatar.cc/80?img=5" alt="Reviewer 4" width="44" height="44" loading="lazy" decoding="async">
-        <img src="https://i.pravatar.cc/80?img=68" alt="Reviewer 5" width="44" height="44" loading="lazy" decoding="async">
+        <span class="avatar-box">MH</span>
+        <span class="avatar-box">JP</span>
+        <span class="avatar-box">TR</span>
+        <span class="avatar-box">CM</span>
+        <span class="avatar-box">ST</span>
+        <span class="avatar-box">DW</span>
+        <span class="avatar-box">MG</span>
+        <span class="avatar-box">RC</span>
       </div>
       <div class="hr-meta">
         <p class="hr-text">Trusted by <strong>20+ businesses</strong> worldwide</p>
@@ -715,7 +780,12 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
   <div class="photo"><img src="https://raw.githubusercontent.com/trackpilotbyanis/portfolio/main/my_pic.png" alt="Md. Anisur Rahman" loading="eager" decoding="async" width="380" height="380"></div>
 </div>
 
-<div class="stats"><div><strong>3+</strong><span>Years experience</span></div><div><strong>50+</strong><span>Projects completed</span></div><div><strong>20+</strong><span>Clients</span></div><div><strong>$50,000</strong><span>Total ad spend</span></div></div>
+<div class="stats">
+  <div><strong>3+</strong><span>Years experience</span></div>
+  <div><strong>150+</strong><span>Projects completed</span></div>
+  <div><strong>4.9★</strong><span>Client Rating</span></div> <!-- এখানে পরিবর্তন করা হয়েছে -->
+  <div><strong>$50,000</strong><span>Total ad spend</span></div>
+</div>
 
 <div class="flowrow">
   <div class="flow" role="img" aria-label="Diagram: a purchase event travels from the website through a server-side GTM container to Meta, GA4 and Google Ads">
@@ -766,6 +836,41 @@ section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px;letter-spacing:-.
 </div>
 <div class="wrap">
 <main>
+
+<!-- নতুন যোগ করা Why Choose Me সেকশন -->
+<section id="why-me">
+  <div class="eyebrow">WHY CHOOSE ME</div>
+  <h2>ROI-Focused, Not Just Ad-Spend Focused</h2>
+  <p class="sub">I don’t just run ads. I build systems that turn clicks into customers and keep them coming back long-term.</p>
+  
+  <div class="why-choose-me-grid">
+    <div class="why-card">
+      <h3>🎯 Conversion-Focused Campaigns</h3>
+      <p>I focus on what matters most to your business—getting more leads, sales, and meaningful results instead of chasing clicks and impressions.</p>
+    </div>
+    <div class="why-card">
+      <h3>📊 Data-Driven Decisions</h3>
+      <p>I don't rely on guesswork. I use tracking data, GA4 reports, and campaign insights to understand what's working and where improvements are needed.</p>
+    </div>
+    <div class="why-card">
+      <h3>⚡ Transparent Communication</h3>
+      <p>I keep you updated on campaign performance, share regular reports, and explain where your ad budget is going.</p>
+    </div>
+    <div class="why-card">
+      <h3>🔍 Audience & Competitor Research</h3>
+      <p>Before launching a campaign, I research your target audience, their interests, behaviors, and competitors to find better ways to reach potential customers.</p>
+    </div>
+    <div class="why-card">
+      <h3>🤖 Smart Meta Ads Optimization</h3>
+      <p>I use Meta's Advantage+ tools, audience insights, and conversion data to improve campaign performance and optimize for better CPA and ROAS.</p>
+    </div>
+    <div class="why-card">
+      <h3>🌍 Global Campaign Experience</h3>
+      <p>I've worked with campaigns targeting the US, UK, UAE, Turkey, and Asian markets, adapting strategies to different audiences and market needs.</p>
+    </div>
+  </div>
+</section>
+
 <section id="services">
   <div class="eyebrow">SERVICES</div>
   <h2>What I can do for your business.</h2>
@@ -1693,28 +1798,33 @@ document.addEventListener('DOMContentLoaded', function() {
 function nextSlide(e, btn, projIndex) {
     e.preventDefault();
     if (projIndex === 0) {
-        projectIndices[projIndex] = (projectIndices[projIndex] + 1) % 2;
+        projectIndices[projIndex] = (projectIndices[projIndex] + 1) % project1Slides.length;
         imageIndices[projIndex] = 0; 
         updateProjectUI(projIndex);
     }
     else if (projIndex === 1) {
-        projectIndices[projIndex] = (projectIndices[projIndex] + 1) % 2;
+        projectIndices[projIndex] = (projectIndices[projIndex] + 1) % project2Slides.length;
         imageIndices[projIndex] = 0; 
         updateProjectUI(projIndex);
     }
     else if (projIndex === 2) {
-        projectIndices[projIndex] = (projectIndices[projIndex] + 1) % 2;
+        projectIndices[projIndex] = (projectIndices[projIndex] + 1) % project3Slides.length;
         imageIndices[projIndex] = 0; 
         updateProjectUI(projIndex);
-    } 
+    }
     else if (projIndex === 3) {
-        projectIndices[projIndex] = (projectIndices[projIndex] + 1) % 4;
+        projectIndices[projIndex] = (projectIndices[projIndex] + 1) % project4Slides.length;
         imageIndices[projIndex] = 0; 
         updateProjectUI(projIndex);
     }
     else if (projIndex === 4) {
-        projectIndices[projIndex] = (projectIndices[projIndex] + 1) % 2;
+        projectIndices[projIndex] = (projectIndices[projIndex] + 1) % project5Slides.length;
         imageIndices[projIndex] = 0; 
+        updateProjectUI(projIndex);
+    }
+    else if (projIndex === 5) {
+        // Only one slide for project 6
+        imageIndices[projIndex] = (imageIndices[projIndex] + 1) % project6Slides[0].images.length;
         updateProjectUI(projIndex);
     }
 }
@@ -1722,26 +1832,32 @@ function nextSlide(e, btn, projIndex) {
 function prevSlide(e, btn, projIndex) {
     e.preventDefault();
     if (projIndex === 0) {
-        projectIndices[projIndex] = (projectIndices[projIndex] - 1 + 2) % 2;
+        projectIndices[projIndex] = (projectIndices[projIndex] - 1 + project1Slides.length) % project1Slides.length;
         imageIndices[projIndex] = 0; 
         updateProjectUI(projIndex);
-    } 
+    }
     else if (projIndex === 1) {
-        projectIndices[projIndex] = (projectIndices[projIndex] - 1 + 2) % 2;
+        projectIndices[projIndex] = (projectIndices[projIndex] - 1 + project2Slides.length) % project2Slides.length;
         imageIndices[projIndex] = 0; 
         updateProjectUI(projIndex);
-    } 
+    }
     else if (projIndex === 2) {
-        projectIndices[projIndex] = (projectIndices[projIndex] - 1 + 2) % 2;
+        projectIndices[projIndex] = (projectIndices[projIndex] - 1 + project3Slides.length) % project3Slides.length;
         imageIndices[projIndex] = 0; 
         updateProjectUI(projIndex);
-    } else if (projIndex === 3) {
-        projectIndices[projIndex] = (projectIndices[projIndex] - 1 + 4) % 4;
+    }
+    else if (projIndex === 3) {
+        projectIndices[projIndex] = (projectIndices[projIndex] - 1 + project4Slides.length) % project4Slides.length;
         imageIndices[projIndex] = 0; 
         updateProjectUI(projIndex);
-    } else if (projIndex === 4) {
-        projectIndices[projIndex] = (projectIndices[projIndex] - 1 + 2) % 2;
+    }
+    else if (projIndex === 4) {
+        projectIndices[projIndex] = (projectIndices[projIndex] - 1 + project5Slides.length) % project5Slides.length;
         imageIndices[projIndex] = 0; 
+        updateProjectUI(projIndex);
+    }
+    else if (projIndex === 5) {
+        imageIndices[projIndex] = (imageIndices[projIndex] - 1 + project6Slides[0].images.length) % project6Slides[0].images.length;
         updateProjectUI(projIndex);
     }
 }
